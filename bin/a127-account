@@ -1,0 +1,58 @@
+#!/usr/bin/env node
+'use strict';
+
+var cli = require('../lib/util/cli');
+var execute = cli.execute;
+var app = require('commander');
+var account = require('../lib/commands/account');
+
+app
+  .command('list')
+  .description('List deployment accounts')
+  .action(execute(account.list, 'Accounts'));
+
+app
+  .command('create [name]')
+  .option('-p, --provider', 'name of provider')
+  .description('Create a new deployment account')
+  .action(execute(account.create, 'Account'));
+
+app
+  .command('delete [name]')
+  .description('Delete an deployment account')
+  .action(execute(account.delete));
+
+app
+  .command('show [account]')
+  .description('Show a deployment account (name is optional - default shows current)')
+  .action(execute(account.show, 'Account'));
+
+app
+  .command('select [name]')
+  .description('Select an deployment account')
+  .action(execute(account.select, 'Account'));
+
+app
+  .command('providers')
+  .description('List available providers')
+  .action(execute(account.providers, 'Providers'));
+
+app
+  .command('update [name]')
+  .description('Update a deployment account')
+  .action(execute(account.update));
+
+app
+  .command('deployments [account]')
+  .description('List deployments')
+  .action(execute(account.deployments, 'Deployments'));
+
+// todo: test and make this happen by magic. (how to handle provider-specific extensions?)
+app
+  .command('deployVolos [account]')
+  .description('Deploy Volos Proxy to Apigee Edge (Apigee only)')
+  .action(execute(account.deployVolosProxy, 'Deployment'));
+
+app.parse(process.argv);
+
+cli.validate(app);

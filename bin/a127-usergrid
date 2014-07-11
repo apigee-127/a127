@@ -1,0 +1,31 @@
+#!/usr/bin/env node
+'use strict';
+
+var app = require('commander');
+var usergrid = require('../lib/commands/service/usergrid');
+var cli = require('../lib/util/cli');
+var execute = cli.execute;
+
+app
+  .command('tail')
+  .description('Tail the Usergrid service log')
+  .option('-f, --follow', 'follow the log')
+  .action(execute(usergrid.tail));
+
+app
+  .command('start')
+  .description('Start the local Usergrid service')
+  .action(execute(usergrid.start));
+
+app
+  .command('stop')
+  .description('Stop the local Usergrid service')
+  .action(execute(usergrid.stop));
+
+app
+  .command('pid')
+  .description('Stop the local Usergrid service')
+  .action(execute(usergrid.pid));
+
+app.parse(process.argv);
+cli.validate(app);

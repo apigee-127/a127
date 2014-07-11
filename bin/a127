@@ -1,0 +1,16 @@
+#!/usr/bin/env node
+'use strict';
+
+var app = require('commander');
+
+app
+  .command('usergrid <action>', 'manage Usergrid process')
+  .command('project <action>', 'manage a project')
+  .command('account <action>', 'manage deployment accounts')
+  .command('proxy <action>', 'manage Apigee Volos proxy');
+
+app.parse(process.argv);
+
+if (app.args.length < 1) {
+  app.help();
+}

@@ -1,0 +1,28 @@
+{
+  "name": "a127",
+  "version": "0.0.0",
+  "description": "Apigee 127 Command Line Interface",
+  "main": "index.js",
+  "dependencies":  {
+    "lodash" : "x.x.x",
+    "async": "0.8.x",
+    "commander": "2.2.x",
+    "inquirer": "0.5.x",
+    "apigee-access": "1.0.x",
+    "debug": "1.0.x",
+    "tail": "x.x.x",
+    "apigeetool": "git://github.com/apigee/apigeetool-node.git#master",
+    "volos": "git://github.com/apigee-127/volos.git#master"
+  },
+  "devDependencies":  {
+    "should" : "3.1.x"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+    "a127":"bin/a127"
+  },
+  "author": "Scott Ganyo",
+  "license": "MIT"
+}

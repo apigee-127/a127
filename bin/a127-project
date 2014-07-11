@@ -1,0 +1,22 @@
+#!/usr/bin/env node
+'use strict';
+
+// a127 project [init | deploy | undeploy | start | stop | show | mock] [options]
+
+var app = require('commander');
+var project = require('../lib/commands/project/project');
+var cli = require('../lib/util/cli');
+var execute = cli.execute;
+
+app
+  .command('create')
+  .description('Create a a127 project in a directory')
+  .action(execute(project.create));
+
+app
+  .command('open')
+  .description('Open project in a browser')
+  .action(execute(project.open));
+
+app.parse(process.argv);
+cli.validate(app);
