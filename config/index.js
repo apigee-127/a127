@@ -1,7 +1,12 @@
 'use strict';
 
+// see config.js to override or create user-specific properties //
+
+var USER_CONFIG = 'config.js';
+
 var Path = require('path');
 var fs = require('fs');
+var _ = require('lodash');
 
 var config = {
   rootDir: Path.resolve(__dirname, '..'),
@@ -38,6 +43,10 @@ config.account = {
   file: Path.resolve(config.tmpDir, 'accounts')
 }
 
+// user config
+
+loadUserConfig();
+
 
 // utility
 
@@ -53,5 +62,18 @@ function mkDir(path) {
     fs.mkdirSync(path);
   } catch (err) {
     if (err.code !== 'EEXIST') { throw err; }
+  }
+}
+
+function loadUserConfig() {
+  try {
+    var confPath = Path.join(config.tmpDir, USER_CONFIG);
+    var userConf = require(confPath);
+    _.extend(config, userConf);
+    if (config.debug) {
+      console.log('user config loaded from ' + confPath);
+    }
+  } catch (err) {
+    // ignore
   }
 }

@@ -2,12 +2,19 @@
 'use strict';
 
 var app = require('commander');
+var config = require('../config');
+var cli = require('../lib/util/cli');
 
 app
   .command('usergrid <action>', 'manage Usergrid process')
   .command('project <action>', 'manage a project')
   .command('account <action>', 'manage deployment accounts')
   .command('proxy <action>', 'manage Apigee Volos proxy');
+
+app
+  .command('config')
+  .description('print config')
+  .action(function() { cli.printAndExit(null, config); });
 
 app.parse(process.argv);
 
