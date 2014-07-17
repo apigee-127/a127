@@ -52,6 +52,7 @@ app
   .command('deploy [directory]')
   .description('Deploy project')
   .option('-a, --account', 'use specified account')
+  .option('-i, --import-only', "only import, don't deploy")
   .action(execute(project.deploy));
 
 app

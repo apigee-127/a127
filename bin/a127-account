@@ -47,7 +47,7 @@ app
   .description('List deployments')
   .action(execute(account.deployments, 'Deployments'));
 
-// todo: test and make this happen by magic. (how to handle provider-specific extensions?)
+// todo: how to handle provider-specific extensions like this?
 app
   .command('deployVolos [account]')
   .description('Deploy Volos Proxy to Apigee Edge (Apigee only)')
