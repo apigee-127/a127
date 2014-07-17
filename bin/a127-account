@@ -7,20 +7,20 @@ var app = require('commander');
 var account = require('../lib/commands/account');
 
 app
-  .command('create [name]')
+  .command('create [account]')
   .option('-p, --provider', 'name of provider')
   .description('Create a new deployment account')
   .action(execute(account.create, 'Account'));
 
 app
-  .command('delete [name]')
+  .command('delete [account]')
   .description('Delete an deployment account')
   .action(execute(account.delete));
 
 app
-  .command('update [name]')
-  .description('Update a deployment account')
-  .action(execute(account.update));
+  .command('select [account]')
+  .description('Select an deployment account')
+  .action(execute(account.select, 'Account'));
 
 app
   .command('show [account]')
@@ -28,14 +28,14 @@ app
   .action(execute(account.show, 'Account'));
 
 app
+  .command('update [account]')
+  .description('Update a deployment account')
+  .action(execute(account.update));
+
+app
   .command('list')
   .description('List deployment accounts')
   .action(execute(account.list, 'Accounts'));
-
-app
-  .command('select [name]')
-  .description('Select an deployment account')
-  .action(execute(account.select, 'Account'));
 
 app
   .command('providers')
@@ -48,10 +48,10 @@ app
   .action(execute(account.deployments, 'Deployments'));
 
 // todo: how to handle provider-specific extensions like this?
-app
-  .command('deployVolos [account]')
-  .description('Deploy Volos Proxy to Apigee Edge (Apigee only)')
-  .action(execute(account.deployVolosProxy, 'Deployment'));
+//app
+//  .command('deployVolos')
+//  .description('Deploy Volos Proxy to Apigee Edge (Apigee only)')
+//  .action(execute(account.deployVolosProxy, 'Deployment'));
 
 app.parse(process.argv);
 
