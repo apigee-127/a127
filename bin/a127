@@ -8,7 +8,6 @@ var cli = require('../lib/util/cli');
 app
   .command('account <action>', 'manage deployment accounts')
   .command('project <action>', 'manage a project')
-  .command('proxy <action>', 'manage Apigee Volos proxy')
   .command('usergrid <action>', 'manage Usergrid process');
 
 app
