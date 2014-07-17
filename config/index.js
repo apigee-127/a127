@@ -12,7 +12,7 @@ var config = {
   rootDir: Path.resolve(__dirname, '..'),
   userHome: process.env[(process.platform == 'win32') ? 'USERPROFILE' : 'HOME'],
   debug: !!process.env.DEBUG
-}
+};
 config.tmpDir = Path.join(config.userHome, '.a127');
 mkDir(config.tmpDir);
 
@@ -34,16 +34,16 @@ config.usergrid = {
   jarFile:  Path.resolve(config.rootDir, 'usergrid-launcher.jar'), // todo: temporary - download from somewhere...
   startOptions: [ '-nogui', '-db', '-init' ],
   startTimeout: 20000
-}
+};
 
 
 // profile //
 
 config.account = {
   file: Path.resolve(config.tmpDir, 'accounts')
-}
+};
 
-// user config
+// home directory config - load last
 
 loadUserConfig();
 
