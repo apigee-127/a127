@@ -34,6 +34,7 @@ app
 
 app
   .command('list')
+  .alias('ls')
   .description('List deployment accounts')
   .action(execute(account.list, 'Accounts'));
 

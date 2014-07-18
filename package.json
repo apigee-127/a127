@@ -6,7 +6,7 @@
   "dependencies":  {
     "lodash" : "2.4.x",
     "async": "0.8.x",
-    "commander": "2.2.x",
+    "commander": "2.3.x",
     "inquirer": "0.5.x",
     "apigee-access": "1.0.x",
     "debug": "1.0.x",
