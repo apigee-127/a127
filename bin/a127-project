@@ -62,6 +62,7 @@ app
   .command('undeploy [directory]')
   .description('Undeploy project')
   .option('-a, --account [account]', 'use specified account')
+  .option('-n, --name [name]', 'override deployment name')
   .action(execute(project.undeploy));
 
 app.parse(process.argv);
