@@ -7,18 +7,18 @@ var app = require('commander');
 var account = require('../lib/commands/account');
 
 app
-  .command('create [account]')
+  .command('create <account>')
   .option('-p, --provider', 'name of provider')
   .description('Create a new deployment account')
   .action(execute(account.create, 'Account'));
 
 app
-  .command('delete [account]')
+  .command('delete <account>]')
   .description('Delete an deployment account')
   .action(execute(account.delete));
 
 app
-  .command('select [account]')
+  .command('select <account>')
   .description('Select an deployment account')
   .action(execute(account.select, 'Account'));
 
