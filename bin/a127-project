@@ -55,7 +55,8 @@ app
   .option('-i, --import-only', "import project to provider, but don't deploy")
   .option('-n, --name [name]', 'override deployment name')
   .option('-m, --main [main]', 'override deployment main file')
-  .option('-b, --base [base]', 'override deployment base uri')
+  .option('-b, --base [path]', 'override deployment base path (default is /projectName)')
+  .option('-d, --docs [path]', 'override deployment docs path (default is /docs)')
   .action(execute(project.deploy));
 
 app
