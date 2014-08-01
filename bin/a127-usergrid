@@ -9,12 +9,18 @@ var execute = cli.execute;
 app
   .command('start')
   .description('Start the local Usergrid service')
+  .option('-i, --install', 'download and install if necessary')
   .action(execute(usergrid.start));
 
 app
   .command('stop')
   .description('Stop the local Usergrid service')
   .action(execute(usergrid.stop));
+
+app
+  .command('install')
+  .description('Install the local Usergrid service')
+  .action(execute(usergrid.install));
 
 app
   .command('tail')
