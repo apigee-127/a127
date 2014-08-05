@@ -16,17 +16,8 @@ app
   .description('Start the project locally')
   .option('-d, --debug', 'start in debug mode')
   .option('-m, --mock', 'start in mock mode')
+  .option('-o, --open', 'open in browser')
   .action(execute(project.start));
-
-app
-  .command('stop [directory]')
-  .description('Stop the locally running project')
-  .action(execute(project.stop));
-
-app
-  .command('restart [directory]')
-  .description('Restart the project locally')
-  .action(execute(project.restart));
 
 app
   .command('verify [directory]')

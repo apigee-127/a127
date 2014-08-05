@@ -20,6 +20,7 @@
     "tail": "0.3.x",
     "js-yaml": "3.1.x",
     "usergrid-installer": "0.0.x",
+    "nodemon": "1.2.x",
     "apigeetool": "git://github.com/apigee/apigeetool-node.git#master",
     "volos": "git://github.com/apigee-127/volos.git#master"
   },
