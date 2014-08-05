@@ -2,8 +2,6 @@
 'use strict';
 
 var app = require('commander');
-var config = require('../config');
-var cli = require('../lib/util/cli');
 
 app
   .command('account <action>', 'manage deployment accounts')
@@ -13,7 +11,11 @@ app
 app
   .command('config')
   .description('print config')
-  .action(function() { cli.printAndExit(null, config); });
+  .action(function() {
+    var config = require('../config');
+    var cli = require('../lib/util/cli');
+    cli.printAndExit(null, config);
+  });
 
 app.parse(process.argv);
 
