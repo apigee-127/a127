@@ -31,7 +31,8 @@ config.usergrid = {
   errLog:  path.resolve(USERGRID_TMP, 'usergrid.log'),
   pidFile:  path.resolve(USERGRID_TMP, 'usergrid.pid'),
   startOptions: [ '-nogui', '-db' ],
-  startTimeout: 20000
+  startTimeout: 20000,
+  portalURL: 'http://usergrid-portal.s3-website-us-west-2.amazonaws.com/?api_url=http://127.0.0.1:8080#!/login'
 };
 
 

@@ -11,12 +11,18 @@ app
   .description('Start your local Usergrid service')
   .option('-d, --download', 'download Usergrid if needed')
   .option('-r, --reset', 'reset your Usergrid to an empty database')
+  .option('-p, --portal', 'open the web portal once started')
   .action(execute(usergrid.start));
 
 app
   .command('stop')
   .description('Stop your local Usergrid service')
   .action(execute(usergrid.stop));
+
+app
+  .command('portal')
+  .description('Open the web portal for your Usergrid service')
+  .action(execute(usergrid.portal));
 
 app
   .command('tail')
