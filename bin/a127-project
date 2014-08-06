@@ -7,7 +7,7 @@ var cli = require('../lib/util/cli');
 var execute = cli.execute;
 
 app
-  .command('create [name]')
+  .command('create <name>')
   .description('Create a subdirectory containing a project')
   .action(execute(project.create));
 

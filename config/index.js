@@ -16,7 +16,7 @@ var config = {
 config.tmpDir = path.join(config.userHome, '.a127');
 mkDir(config.tmpDir);
 
-// todo: temporary - remove github volos from package and just get the proxy for install
+// todo: temporary - remove from package and just get the proxy for install
 config.volosProxyDir = path.resolve(config.rootDir, 'node_modules/Volos/proxy');
 
 module.exports = config;
@@ -36,10 +36,18 @@ config.usergrid = {
 };
 
 
-// profile //
+// account //
 
 config.account = {
   file: path.resolve(config.tmpDir, 'accounts')
+};
+
+
+// project //
+
+config.project = {
+  port: 10010,
+  skeletonDir: path.resolve(config.rootDir, 'node_modules/a127-skeleton')
 };
 
 // home directory config - load last
