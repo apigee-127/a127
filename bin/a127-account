@@ -4,7 +4,7 @@
 var cli = require('../lib/util/cli');
 var execute = cli.execute;
 var app = require('commander');
-var account = require('../lib/commands/account');
+var account = require('../lib/commands/account/account');
 
 app
   .command('create <account>')
