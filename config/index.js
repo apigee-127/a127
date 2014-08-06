@@ -16,7 +16,6 @@ var config = {
 config.tmpDir = path.join(config.userHome, '.a127');
 mkDir(config.tmpDir);
 
-// todo: temporary - remove from package and just get the proxy for install
 config.volosProxyDir = path.resolve(config.rootDir, 'node_modules/Volos/proxy');
 
 module.exports = config;
@@ -31,7 +30,7 @@ config.usergrid = {
   outLog:  path.resolve(USERGRID_TMP, 'usergrid.log'),
   errLog:  path.resolve(USERGRID_TMP, 'usergrid.log'),
   pidFile:  path.resolve(USERGRID_TMP, 'usergrid.pid'),
-  startOptions: [ '-nogui', '-db', '-init' ],
+  startOptions: [ '-nogui', '-db' ],
   startTimeout: 20000
 };
 

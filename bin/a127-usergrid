@@ -8,30 +8,31 @@ var execute = cli.execute;
 
 app
   .command('start')
-  .description('Start the local Usergrid service')
-  .option('-i, --install', 'download and install if necessary')
+  .description('Start your local Usergrid service')
+  .option('-d, --download', 'download Usergrid if needed')
+  .option('-r, --reset', 'reset your Usergrid to an empty database')
   .action(execute(usergrid.start));
 
 app
   .command('stop')
-  .description('Stop the local Usergrid service')
+  .description('Stop your local Usergrid service')
   .action(execute(usergrid.stop));
 
 app
-  .command('install')
-  .description('Install the local Usergrid service')
-  .action(execute(usergrid.install));
-
-app
   .command('tail')
-  .description('Tail the Usergrid service log')
+  .description('Tail your local Usergrid service log')
   .option('-f, --follow', 'follow the log')
   .action(execute(usergrid.tail));
 
 app
   .command('pid')
-  .description('Stop the local Usergrid service')
+  .description('Display the process id of your local Usergrid service (if running)')
   .action(execute(usergrid.pid));
+
+app
+  .command('download')
+  .description('Download Usergrid to your local machine')
+  .action(execute(usergrid.download));
 
 app.parse(process.argv);
 cli.validate(app);
