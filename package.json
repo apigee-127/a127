@@ -1,6 +1,6 @@
 {
   "name": "apigee-127",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Apigee 127 Command Line Interface",
   "keywords": [
     "Apigee",
@@ -10,8 +10,8 @@
   "author": "Scott Ganyo <sganyo@apigee.com>",
   "license": "MIT",
   "main": "index.js",
-  "dependencies":  {
-    "lodash" : "2.4.x",
+  "dependencies": {
+    "lodash": "2.4.x",
     "async": "0.8.x",
     "commander": "2.3.x",
     "inquirer": "0.5.x",
@@ -26,16 +26,15 @@
     "volos": "git://github.com/apigee-127/volos.git#master",
     "skeleton": "git://github.com/apigee-127/project-skeleton.git#master"
   },
-  "devDependencies":  {
-    "should" : "3.1.x"
+  "devDependencies": {
+    "should": "3.1.x"
   },
-  "scripts": {
-  },
+  "scripts": {},
   "bin": {
-    "a127":"bin/a127",
-    "a127-account":"bin/a127-account",
-    "a127-project":"bin/a127-project",
-    "a127-usergrid":"bin/a127-usergrid",
-    "a127-apigee":"bin/a127-apigee"
+    "a127": "bin/a127",
+    "a127-account": "bin/a127-account",
+    "a127-project": "bin/a127-project",
+    "a127-usergrid": "bin/a127-usergrid",
+    "a127-apigee": "bin/a127-apigee"
   }
 }
