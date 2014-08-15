@@ -74,7 +74,7 @@ app
 
 // todo: how to handle provider-specific extensions like this?
 app
-  .command('deployApigeeProxy')
+  .command('deployApigeeProxy [account]')
   .description('Deploy Remote API Proxy to Apigee Edge (Apigee only)')
   .action(execute(account.deployVolosProxy, 'Deployment'));
 
