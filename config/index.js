@@ -36,13 +36,17 @@ var config = {
   userHome: process.env[(process.platform == 'win32') ? 'USERPROFILE' : 'HOME'],
   debug: !!process.env.DEBUG
 };
+config.nodeModules = path.resolve(config.rootDir, 'node_modules');
 config.tmpDir = path.join(config.userHome, '.a127');
 mkDir(config.tmpDir);
 
-config.volosProxyDir = path.resolve(config.rootDir, 'node_modules/Volos/proxy');
+config.volosProxyDir = path.resolve(config.nodeModules, 'Volos/proxy');
 
 module.exports = config;
 
+// swagger editor //
+
+config.swaggerEditorDir = path.resolve(config.nodeModules, 'swagger-editor');
 
 // usergrid //
 
@@ -70,7 +74,7 @@ config.account = {
 
 config.project = {
   port: 10010,
-  skeletonDir: path.resolve(config.rootDir, 'node_modules/a127-skeleton')
+  skeletonDir: path.resolve(config.nodeModules, 'a127-skeleton')
 };
 
 // home directory config - load last
