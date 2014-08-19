@@ -25,6 +25,7 @@
     "ncp": "0.6.x",
     "express": "4.8.x",
     "swagger-editor": "2.x.x",
+    "fs-reverse": "0.1.x",
     "volos": "git://github.com/apigee-127/volos.git#master",
     "skeleton": "git://github.com/apigee-127/project-skeleton.git#master"
   },
