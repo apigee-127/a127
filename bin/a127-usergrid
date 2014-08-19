@@ -51,6 +51,7 @@ app
   .command('tail')
   .description('Tail your local Usergrid service log')
   .option('-f, --follow', 'follow the log')
+  .option('-l, --lines <n>', 'number of lines to print', parseInt)
   .action(execute(usergrid.tail));
 
 app
