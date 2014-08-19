@@ -46,7 +46,10 @@ module.exports = config;
 
 // swagger editor //
 
-config.swaggerEditorDir = path.resolve(config.nodeModules, 'swagger-editor');
+config.swagger = {
+  fileName: 'api/swagger/swagger.json',
+  editorDir: path.resolve(config.nodeModules, 'swagger-editor')
+};
 
 // usergrid //
 
