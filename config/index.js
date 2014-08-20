@@ -47,7 +47,7 @@ module.exports = config;
 // swagger editor //
 
 config.swagger = {
-  fileName: 'api/swagger/swagger.json',
+  fileName: 'api/swagger/swagger.yaml',
   editorDir: path.resolve(config.nodeModules, 'swagger-editor-for-apigee-127')
 };
 
