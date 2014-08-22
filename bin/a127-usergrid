@@ -45,6 +45,8 @@ app
 app
   .command('portal')
   .description('Open the web portal for your Usergrid service')
+  .option('-d, --download', 'download Usergrid and/or portal if needed')
+  .option('-s, --start', 'start Usergrid if needed')
   .action(execute(usergrid.portal));
 
 app
