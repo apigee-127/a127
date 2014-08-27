@@ -18,7 +18,7 @@
     "apigee-access": "1.0.x",
     "debug": "1.0.x",
     "tail": "0.3.x",
-    "js-yaml": "3.1.x",
+    "yamljs": "0.1.x",
     "usergrid-installer": "0.0.x",
     "nodemon": "1.2.x",
     "apigeetool": "",
