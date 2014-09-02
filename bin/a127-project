@@ -46,6 +46,7 @@ app
 app
   .command('verify [directory]')
   .description('Verify that the project is correct (swagger, config, etc)')
+  .option('-j, --json', 'output as JSON')
   .action(execute(project.verify));
 
 app
