@@ -56,13 +56,13 @@ app
   .action(execute(account.update));
 
 app
-  .command('setValue [key] [value]')
+  .command('setValue <key> <value>')
   .option('-a, --account', 'name of account')
   .description('Set a value on the account')
   .action(execute(account.setValue));
 
 app
-  .command('deleteValue [key]')
+  .command('deleteValue <key>')
   .option('-a, --account', 'name of account')
   .description('Delete a value from the account')
   .action(execute(account.deleteValue));
