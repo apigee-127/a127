@@ -42,6 +42,10 @@ app
 
 app.parse(process.argv);
 
-if (app.args.length < 1) {
+if (!app.runningCommand) {
+  if (app.args.length > 0) {
+    console.log();
+    console.log('error: invalid command: ' + app.args[0]);
+  }
   app.help();
 }
