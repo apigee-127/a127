@@ -28,7 +28,8 @@
     "tail": "0.3.x",
     "usergrid-installer": "0.0.x",
     "volos": "git://github.com/apigee-127/volos.git#master",
-    "yamljs": "0.1.x"
+    "yamljs": "0.1.x",
+    "volos-management-apigee": ""
   },
   "devDependencies": {
     "should": "3.1.x"
