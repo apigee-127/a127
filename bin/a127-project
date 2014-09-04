@@ -40,7 +40,7 @@ app
   .option('-d, --debug', 'start in debug mode')
   .option('-m, --mock', 'start in mock mode')
   .option('-o, --open', 'open in browser')
-  .option('-a, --account', 'use specified account for configuration')
+  .option('-a, --account [account]', 'use specified account for configuration')
   .action(execute(project.start));
 
 app
