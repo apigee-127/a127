@@ -31,7 +31,13 @@ var account = require('../lib/commands/account/account');
 
 app
   .command('create <account>')
-  .option('-p, --provider', 'name of provider')
+  .option('-p, --provider [provider]', 'name of provider')
+  .option('-b, --baseuri [baseuri]', 'base uri')
+  .option('-o, --organization [organization]', 'organization')
+  .option('-u, --username [username]', 'username')
+  .option('-w, --password [password]', 'password')
+  .option('-e, --environment [environment]', 'environment')
+  .option('-v, --virtualhosts [virtualhosts]', 'virtual hosts')
   .description('Create a new deployment account')
   .action(execute(account.create, 'Account'));
 
