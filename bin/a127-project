@@ -59,10 +59,10 @@ app
   .description('Open project in a browser')
   .action(execute(project.open));
 
-app
-  .command('docs [directory]')
-  .description('View project docs in a browser')
-  .action(execute(project.docs));
+//app
+//  .command('docs [directory]')
+//  .description('View project docs in a browser')
+//  .action(execute(project.docs));
 
 app
   .command('deploy [directory]')
