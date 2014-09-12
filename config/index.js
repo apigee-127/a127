@@ -98,7 +98,7 @@ function tempDir(relativePath) {
 
 function mkDir(path) {
   try {
-    fs.mkdirSync(path);
+    fs.mkdirSync(path, '0700');
   } catch (err) {
     if (err.code !== 'EEXIST') { throw err; }
   }
