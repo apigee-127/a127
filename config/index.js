@@ -62,7 +62,9 @@ config.usergrid = {
   pidFile:  path.resolve(USERGRID_TMP, 'usergrid.pid'),
   startOptions: [ '-nogui', '-db' ],
   startTimeout: 20000,
-  portalURL: 'http://usergrid-portal.s3-website-us-west-2.amazonaws.com/?api_url=http://127.0.0.1:8080#!/login'
+  portalURL: 'http://usergrid-portal.s3-website-us-west-2.amazonaws.com/?api_url=http://127.0.0.1:8080#!/login',
+  port: 8080,
+  thriftPort: 9160
 };
 
 
