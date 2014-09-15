@@ -40,7 +40,7 @@ app
   .option('-d, --debug', 'start in debug mode')
   .option('-m, --mock', 'start in mock mode')
   .option('-o, --open', 'open in browser')
-  .option('-a, --account [account]', 'use specified account for configuration')
+  .option('-a, --account <account>', 'use specified account for configuration')
   .action(execute(project.start));
 
 app
@@ -67,19 +67,19 @@ app
 app
   .command('deploy [directory]')
   .description('Deploy project')
-  .option('-a, --account [account]', 'use specified account')
-  .option('-i, --import-only', "import project to provider, but don't deploy")
-  .option('-n, --name [name]', 'override deployment name')
-  .option('-m, --main [main]', 'override deployment main file')
-  .option('-b, --base [path]', 'override deployment base path (default is /projectName)')
-  .option('-d, --docs [path]', 'override deployment docs path (default is /docs)')
+  .option('-a, --account <account>', 'use specified account')
+  .option('-b, --base <path>', 'override deployment base path (default is /<projectName>)')
+  .option('-m, --main <main>', 'override deployment main file')
+  .option('-n, --name <name>', 'override deployment name')
+  .option('-i, --import-only', "import project to provider, but don't deploy (Apigee only)")
+//  .option('-d, --docs <path>', 'override deployment docs path (default is /docs)')
   .action(execute(project.deploy));
 
 app
   .command('undeploy [directory]')
   .description('Undeploy project')
-  .option('-a, --account [account]', 'use specified account')
-  .option('-n, --name [name]', 'override deployment name')
+  .option('-a, --account <account>', 'use specified account')
+  .option('-n, --name <name>', 'use specified deployment name')
   .action(execute(project.undeploy));
 
 app.parse(process.argv);
