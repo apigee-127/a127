@@ -47,7 +47,7 @@ app
   .action(execute(account.delete));
 
 app
-  .command('select <account>')
+  .command('select [account]')
   .description('Select an deployment account')
   .action(execute(account.select, 'Account'));
 
