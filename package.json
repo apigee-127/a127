@@ -24,7 +24,7 @@
     "nodemon": "1.2.x",
     "skeleton": "git://github.com/apigee-127/project-skeleton.git#master",
     "swagger-editor-for-apigee-127": "2.x.x",
-    "swagger-tools": "^0.5.2",
+    "swagger-tools": "0.5.x",
     "tail": "0.3.x",
     "usergrid-installer": "0.0.x",
     "volos": "git://github.com/apigee-127/volos.git#master",
