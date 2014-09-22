@@ -42,7 +42,7 @@ app
   .action(execute(account.create, 'Account'));
 
 app
-  .command('delete <account>]')
+  .command('delete [account]')
   .description('Delete an deployment account')
   .action(execute(account.delete));
 
