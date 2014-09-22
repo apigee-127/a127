@@ -37,7 +37,8 @@ app
 app
   .command('start [directory]')
   .description('Start the project locally')
-  .option('-d, --debug', 'start in debug mode')
+  .option('-d, --debug [port]', 'start in remote debug mode')
+  .option('-b, --debug-brk [port]', 'start in remote debug mode, wait for debugger connect')
   .option('-m, --mock', 'start in mock mode')
   .option('-o, --open', 'open in browser')
   .option('-a, --account <account>', 'use specified account for configuration')
