@@ -32,6 +32,8 @@ To print a list of valid options for a command:
         -m, --mock   start in mock mode
         -o, --open   open in browser
         -a, --account <account> use the specified account for configuration
+        -d, --debug [port]      start in remote debug mode
+        -b, --debug-brk [port]  start in remote debug mode, wait for debugger connect
 ```
 * **edit** - Opens the Swagger API editor.
 * **deploy** - Deploys the project to the currently configured cloud platform account.
