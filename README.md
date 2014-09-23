@@ -41,12 +41,15 @@ To print a list of valid options for a command:
     Options: 
         -h, --help               output usage information
         -a, --account [account]  use specified account
-        -i, --import-only        import project to provider, but don't deploy
+        -i, --import-only        import project to provider, but don't deploy (Apigee only)
         -n, --name [name]        override deployment name
         -m, --main [main]        override deployment main file
         -b, --base [path]        override deployment base path (default is /projectName)
-        -d, --docs [path]        override deployment docs path (default is /docs)
+        -r, --resolve-modules    resolve node modules on server instead of uploading (Apigee only, beta) ** See the Tip below **
 ```
+
+>Tip: If you receive an error that says node_modules is too large to deploy to Apigee Edge, use the `-r` option with `a127 project deploy` command. When this flag is set, the deployment tool ([apigeetool](https://www.npmjs.org/package/apigeetool)) does not ZIP and upload the contents of node_modules; rather, it runs `npm` on Apigee Edge.
+
 * **undeploy** - Undeploys the project from the currently configured cloud platform account.
 ```bash
     Options:
