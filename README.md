@@ -103,6 +103,7 @@ Example:
 ```bash
         $ a127 account delete myaccount
 ```
+
 * **update** - Updates the specified account. Follow the command line prompts.
 * **show** - Shows information about the specified account. If you do not specify an account name, you will see information for the current account. 
 * **list|ls** - Lists the deployment accounts. The current account is identified with "+". 
@@ -147,10 +148,13 @@ To print a list of valid options for a command:
 
 * **start** - Starts a local instance of the Apache Usergrid service.
 * **stop** - Stops the running Usergrid service.
+
+>Note: If you are unsure if Usergrid is running, hit localhost:8080. If you get a "Page Not Found" error, Usergrid is not running. In that case, try stopping and then starting Usergrid using `a127 usergrid stop` and `a127 usergrid start`.
+
 * **download** - Downloads Apache Usergrid to your machine. 
 * **portal** - Opens the Usergrid portal. Use the portal to manage Usergrid projects, create data sets, manage app security, and more. The default login credentials are test/test. 
 
-    Note: You must download Usergrid before you can open the portal. Or, you can execute `a127 usergrid portal --download`.
+>Note: You must download Usergrid before you can open the portal. Or, you can execute `a127 usergrid portal --download`.
 
 * **pid** - Print the pid of the currently running Usergrid service.
 * **tail** - Prints the tail of your local Usergrid service log. 
