@@ -26,7 +26,13 @@
 // Copy to ~/.a127/config.js and edit to override base configuration
 
 var config = {
-  // override here
+  // common examples...
+
+  // set usergrid port
+//  usergrid.port: 8080
+
+  // set browser for Linux
+//  browser: '/path/to/your/browser/executable'
 
 };
 
