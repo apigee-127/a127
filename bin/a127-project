@@ -42,6 +42,7 @@ app
   .option('-m, --mock', 'start in mock mode')
   .option('-o, --open', 'open in browser')
   .option('-a, --account <account>', 'use specified account for configuration')
+  .option('-p, --print', 'print configuration')
   .action(execute(project.start));
 
 app
@@ -83,6 +84,12 @@ app
   .option('-a, --account <account>', 'use specified account')
   .option('-n, --name <name>', 'use specified deployment name')
   .action(execute(project.undeploy));
+
+app
+  .command('config [directory]')
+  .description('Show all project configuration elements given current account')
+  .option('-a, --account <account>', 'use specified account for configuration')
+  .action(execute(project.showConfig));
 
 app.parse(process.argv);
 cli.validate(app);

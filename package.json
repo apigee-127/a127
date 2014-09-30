@@ -30,7 +30,8 @@
     "volos": "git://github.com/apigee-127/volos.git#master",
     "yamljs": "0.1.x",
     "volos-management-apigee": "",
-    "jszip": "2.4.x"
+    "jszip": "2.4.x",
+    "a127-magic": ""
   },
   "devDependencies": {
     "should": "3.1.x"
