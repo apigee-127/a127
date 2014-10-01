@@ -25,11 +25,18 @@
 
 // Copy to ~/.a127/config.js and edit to override base configuration
 
+// Note: You may instead use env vars prefixed by a127_ and using _ to separate hash names like this:
+// export a127_usergrid_port=9999
+// export a127_browser='/path/to/your/browser/executable'
+
 var config = {
   // common examples...
 
   // set usergrid port
-//  usergrid.port: 8080
+//  usergrid:
+//  {
+//    port: 9999
+//  }
 
   // set browser for Linux
 //  browser: '/path/to/your/browser/executable'

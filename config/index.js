@@ -60,7 +60,6 @@ config.usergrid = {
   outLog:  path.resolve(USERGRID_TMP, 'usergrid.log'),
   errLog:  path.resolve(USERGRID_TMP, 'usergrid.log'),
   pidFile:  path.resolve(USERGRID_TMP, 'usergrid.pid'),
-  startOptions: [ '-nogui', '-db' ],
   startTimeout: 20000,
   port: 8080,
   thriftPort: 9160
@@ -81,9 +80,11 @@ config.project = {
   skeletonDir: path.resolve(config.nodeModules, 'a127-skeleton')
 };
 
-// home directory config - load last
-
+// load home directory config
 loadUserConfig();
+
+// load env vars
+loadEnvConfig();
 
 
 // utility
@@ -107,11 +108,29 @@ function loadUserConfig() {
   try {
     var confPath = path.join(config.tmpDir, USER_CONFIG);
     var userConf = require(confPath);
-    _.extend(config, userConf);
+    _.merge(config, userConf);
     if (config.debug) {
       console.log('user config loaded from ' + confPath);
     }
   } catch (err) {
     // ignore
   }
+}
+
+function loadEnvConfig() {
+  _.each(process.env, function(value, key) {
+    if (key.indexOf('a127_') == 0) {
+      var split = key.split('_');
+      var configItem = config;
+      for (var i = 1; i < split.length; i++) {
+        var subKey = split[i];
+        if (i < split.length - 1) {
+          if (!configItem[subKey]) { configItem[subKey] = {}; }
+          configItem = configItem[subKey];
+        } else {
+          configItem[subKey] = value;
+        }
+      }
+    }
+  });
 }
