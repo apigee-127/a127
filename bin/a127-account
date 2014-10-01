@@ -31,13 +31,13 @@ var account = require('../lib/commands/account/account');
 
 app
   .command('create <account>')
-  .option('-p, --provider [provider]', 'name of provider')
-  .option('-b, --baseuri [baseuri]', 'base uri')
-  .option('-o, --organization [organization]', 'organization')
-  .option('-u, --username [username]', 'username')
-  .option('-w, --password [password]', 'password')
-  .option('-e, --environment [environment]', 'environment')
-  .option('-v, --virtualhosts [virtualhosts]', 'virtual hosts')
+  .option('-p, --provider <provider>', 'name of provider')
+  .option('-b, --baseuri <baseuri>', 'base uri')
+  .option('-o, --organization <organization>', 'organization')
+  .option('-u, --username <username>', 'username')
+  .option('-w, --password <password>', 'password')
+  .option('-e, --environment <environment>', 'environment')
+  .option('-v, --virtualhosts <virtualhosts>', 'virtual hosts')
   .description('Create a new deployment account')
   .action(execute(account.create, 'Account'));
 
@@ -63,13 +63,13 @@ app
 
 app
   .command('setValue <key> <value>')
-  .option('-a, --account', 'name of account')
+  .option('-a, --account <account>', 'name of account')
   .description('Set a value on the account')
   .action(execute(account.setValue));
 
 app
   .command('deleteValue <key>')
-  .option('-a, --account', 'name of account')
+  .option('-a, --account <account>', 'name of account')
   .description('Delete a value from the account')
   .action(execute(account.deleteValue));
 
