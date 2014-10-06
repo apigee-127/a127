@@ -74,7 +74,6 @@ app
   .option('-m, --main <main>', 'override deployment main file')
   .option('-n, --name <name>', 'override deployment name')
   .option('-i, --import-only', "import project to provider, but don't deploy (Apigee only)")
-  .option('-r, --resolve-modules', 'resolve node modules on server instead of uploading (Apigee only, beta)')
 //  .option('-d, --docs <path>', 'override deployment docs path (default is /docs)')
   .action(execute(project.deploy));
 
