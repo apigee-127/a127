@@ -40,8 +40,6 @@ config.nodeModules = path.resolve(config.rootDir, 'node_modules');
 config.tmpDir = path.join(config.userHome, '.a127');
 mkDir(config.tmpDir);
 
-config.volosProxyDir = path.resolve(config.nodeModules, 'Volos/proxy');
-
 module.exports = config;
 
 // swagger editor //

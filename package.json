@@ -27,11 +27,11 @@
     "swagger-tools": "0.5.x",
     "tail": "0.3.x",
     "usergrid-installer": "0.0.x",
-    "volos": "git://github.com/apigee-127/volos.git#master",
     "yamljs": "0.1.x",
     "volos-management-apigee": "",
     "jszip": "2.4.x",
-    "a127-magic": ""
+    "a127-magic": "",
+    "apigee-remote-proxy": ""
   },
   "devDependencies": {
     "should": "3.1.x"
