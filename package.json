@@ -22,7 +22,6 @@
     "lodash": "2.4.x",
     "ncp": "0.6.x",
     "nodemon": "1.2.x",
-    "skeleton": "git://github.com/apigee-127/project-skeleton.git#master",
     "swagger-editor-for-apigee-127": "2.x.x",
     "swagger-tools": "0.5.x",
     "tail": "0.3.x",
@@ -31,16 +30,24 @@
     "volos-management-apigee": "",
     "jszip": "2.4.x",
     "a127-magic": "",
-    "apigee-remote-proxy": ""
+    "apigee-remote-proxy": "",
+    "unzip": "0.1.xx"
   },
   "devDependencies": {
     "should": "3.1.x"
   },
-  "scripts": {},
+  "scripts": {
+    "postinstall": "node lib/commands/project/download_skeleton.js",
+    "postupdate": "node lib/commands/project/download_skeleton.js"
+  },
   "bin": {
     "a127": "bin/a127",
     "a127-account": "bin/a127-account",
     "a127-project": "bin/a127-project",
     "a127-usergrid": "bin/a127-usergrid"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/apigee/apigee-127.git"
   }
 }

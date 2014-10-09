@@ -75,7 +75,8 @@ config.account = {
 
 config.project = {
   port: 10010,
-  skeletonDir: path.resolve(config.nodeModules, 'a127-skeleton')
+  skeletonZipUrl: 'https://codeload.github.com/apigee-127/project-skeleton/zip/master',
+  skeletonDir: path.resolve(config.tmpDir, 'project-skeleton-master')
 };
 
 // load home directory config
