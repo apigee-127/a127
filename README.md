@@ -1,6 +1,10 @@
 # a127 reference
 
-This is the installation guide and command reference for `a127`, the command-line interface for Apigee 127. Note that the `/bin/a127` command must be in your PATH. See the "Installation" section for details. 
+This is the installation guide and command reference for `a127`, the command-line interface for Apigee 127. 
+
+* Prerequisites
+* Installation
+* Commands
 
 # Prerequisites
 
@@ -43,7 +47,15 @@ Apigee-127 places most of its files that it depends on at a global level in `~/.
 
 For a list of dependencies and Node.js modules that are relevant to an Apigee-127 project, see [Apigee-127 modules](https://github.com/apigee-127/a127-documentation/wiki/Apigee-127-modules)
 
-# <a name="a127-project"></a>project
+# Command reference
+
+* project
+* account
+* usergrid
+* config
+* wiki
+
+## <a name="a127-project"></a>project
 
 Create and manage Apigee 127 projects on your local machine. 
 
@@ -99,7 +111,7 @@ To print a list of valid options for a command:
        -n, --name [name]        override deployment name
 ```
 
-# <a name="a127-account"></a>account
+## <a name="a127-account"></a>account
 
 Create and manage deployment provider accounts. Deployment providers are cloud-based platforms where you can deploy your Apigee 127 project. 
 
@@ -166,7 +178,7 @@ Example:
 * **deleteValue** -- Deletes a value from the account.  
 
 
-# <a name="a127-usergrid"></a>usergrid
+## <a name="a127-usergrid"></a>usergrid
 
 Manage an [Apache Usergrid](http://usergrid.incubator.apache.org/) service on your local machine. Usergrid is an open-source BaaS solution based on RESTful APIs. 
 
@@ -199,8 +211,12 @@ To print a list of valid options for a command:
 * **pid** - Print the pid of the currently running Usergrid service.
 * **tail** - Prints the tail of your local Usergrid service log. 
 
-# config
+## config
 
 Prints config information for the Apigee 127 project. 
 
 `$ a127 config`
+
+## <a name="a127-wiki"></a>wiki
+
+Opens the Apigee-127 documentation wiki in your default browser. The wiki is hosted on GitHub with the [apigee-127/a127-documentation](https://github.com/apigee-127/a127-documentation) project. 
