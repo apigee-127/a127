@@ -1,8 +1,49 @@
-## a127 command reference
+# a127 reference
 
-This is the command reference for `a127`, the command-line interface for Apigee 127. Note that the `/bin/a127` command must be in your PATH. See the "Installation" section for details. 
+This is the installation guide and command reference for `a127`, the command-line interface for Apigee 127. Note that the `/bin/a127` command must be in your PATH. See the "Installation" section for details. 
 
-### <a name="a127-project"></a>project
+# Prerequisites
+
+If you choose to install Apigee-127 using npm you will need npm version 1.3 or higher.  You will also need [Node.js](http://nodejs.org/download/) version 0.10.24 or higher.
+
+# Installation
+
+You can install `apigee-127` either through npm or by cloning and linking the code from GitHub.  This document covers the installation details for installing from npm.
+
+## Installation from npm
+
+The `apigee-127` module and its dependencies are designed for Node.js and is available through npm using the following command:
+
+### Linux / Mac from a Terminal Window:
+```bash
+$ sudo npm install -g apigee-127
+```
+
+> NOTE: The npm installation requires permission to create a folder in the ~/.a127 directory. When installing apigee-127 you may need to add the flag --unsafe-perm to the install command. For example:
+    ```bash
+        $sudo npm install -g apigee-127 --unsafe-perm
+    ```
+
+> NOTE: `sudo` may be required with the `-g` option which places the `a127` command-line commands in you PATH. If you do not use `-g`, then you need to add the `apigee-127/bin `directory to your PATH manually. 
+> 
+> Typically, the `-g` option places modules in: `/usr/local/lib/node_modules/apigee-127` on *nix-based machines.
+
+
+### Windows, from a Command Prompt
+
+```
+npm install -g apigee-127
+```
+
+## Location of files
+
+Apigee-127 places most of its files that it depends on at a global level in `~/.a127`.  This includes an `accounts` file that has details about the configured accounts and an optional `usergrid` directory if you choose to download and use Usergrid through the `a127` command line.
+
+## Dependencies
+
+For a list of dependencies and Node.js modules that are relevant to an Apigee-127 project, see [Apigee-127 modules](https://github.com/apigee-127/a127-documentation/wiki/Apigee-127-modules)
+
+# <a name="a127-project"></a>project
 
 Create and manage Apigee 127 projects on your local machine. 
 
@@ -58,7 +99,7 @@ To print a list of valid options for a command:
        -n, --name [name]        override deployment name
 ```
 
-### <a name="a127-account"></a>account
+# <a name="a127-account"></a>account
 
 Create and manage deployment provider accounts. Deployment providers are cloud-based platforms where you can deploy your Apigee 127 project. 
 
@@ -125,7 +166,7 @@ Example:
 * **deleteValue** -- Deletes a value from the account.  
 
 
-### <a name="a127-usergrid"></a>usergrid
+# <a name="a127-usergrid"></a>usergrid
 
 Manage an [Apache Usergrid](http://usergrid.incubator.apache.org/) service on your local machine. Usergrid is an open-source BaaS solution based on RESTful APIs. 
 
@@ -158,7 +199,7 @@ To print a list of valid options for a command:
 * **pid** - Print the pid of the currently running Usergrid service.
 * **tail** - Prints the tail of your local Usergrid service log. 
 
-## config
+# config
 
 Prints config information for the Apigee 127 project. 
 
