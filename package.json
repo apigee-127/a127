@@ -22,16 +22,16 @@
     "lodash": "2.4.x",
     "ncp": "0.6.x",
     "nodemon": "1.2.x",
-    "swagger-editor-for-apigee-127": "2.x.x",
-    "swagger-tools": "0.5.x",
+    "unzip": "0.1.x",
     "tail": "0.3.x",
-    "usergrid-installer": "0.0.x",
     "yamljs": "0.1.x",
-    "volos-management-apigee": "",
     "jszip": "2.4.x",
+    "swagger-editor-for-apigee-127": "2.6.2",
+    "swagger-tools": "",
+    "usergrid-installer": "",
+    "volos-management-apigee": "",
     "a127-magic": "",
-    "apigee-remote-proxy": "",
-    "unzip": "0.1.xx"
+    "apigee-remote-proxy": ""
   },
   "devDependencies": {
     "should": "3.1.x"
