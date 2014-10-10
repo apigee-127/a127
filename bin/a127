@@ -25,6 +25,7 @@
 'use strict';
 
 var app = require('commander');
+var browser = require('../lib/util/browser');
 
 app
   .command('account <action>', 'manage deployment accounts')
@@ -38,6 +39,15 @@ app
     var config = require('../config');
     var cli = require('../lib/util/cli');
     cli.printAndExit(null, config);
+  });
+
+app
+  .command('wiki')
+  .description('load the apigee-127 wiki')
+  .action(function() {
+      browser.open('https://github.com/apigee-127/a127-documentation/wiki', function(){
+        process.exit(0);
+      });
   });
 
 app.parse(process.argv);
