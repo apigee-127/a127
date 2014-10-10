@@ -45,10 +45,10 @@ To print a list of valid options for a command:
         -n, --name [name]        override deployment name
         -m, --main [main]        override deployment main file
         -b, --base [path]        override deployment base path (default is /projectName)
-        -r, --resolve-modules    resolve node modules on server instead of uploading (Apigee only, beta) ** See the Tip below **
 ```
 
->Tip: If you receive an error that says node_modules is too large to deploy to Apigee Edge, use the `-r` option with `a127 project deploy` command. When this flag is set, the deployment tool ([apigeetool](https://www.npmjs.org/package/apigeetool)) does not ZIP and upload the contents of node_modules; rather, it runs `npm` on Apigee Edge.
+>Note: When you deploy your project to Apigee Edge, Node.js modules are installed or updated automatically for you on Edge. The command does not upload any files from your local `node_modules` directory. 
+
 
 * **undeploy** - Undeploys the project from the currently configured cloud platform account.
 ```bash
@@ -86,7 +86,7 @@ To print a list of valid options for a command:
     -u, --username [username]          username
     -w, --password [password]          password
     -e, --environment [environment]    environment
-    -v, --virtualhosts [virtualhosts]  virtual hosts
+    -v, --virtualhosts [virtualhosts]  virtual hosts -- by default "default,secure" is set, giving both http and https support. For http only, set this to default. For https only, set to https. 
 ```
 Example:
 
@@ -103,7 +103,6 @@ Example:
 ```bash
         $ a127 account delete myaccount
 ```
-
 * **update** - Updates the specified account. Follow the command line prompts.
 * **show** - Shows information about the specified account. If you do not specify an account name, you will see information for the current account. 
 * **list|ls** - Lists the deployment accounts. The current account is identified with "+". 
@@ -149,12 +148,12 @@ To print a list of valid options for a command:
 * **start** - Starts a local instance of the Apache Usergrid service.
 * **stop** - Stops the running Usergrid service.
 
->Note: If you are unsure if Usergrid is running, hit localhost:8080. If you get a "Page Not Found" error, Usergrid is not running. In that case, try stopping and then starting Usergrid using `a127 usergrid stop` and `a127 usergrid start`.
+    Note: If you are unsure if Usergrid is running, hit localhost:8080. If you get a "Page Not Found" error, Usergrid is not running. In that case, try stopping and then starting Usergrid using `a127 usergrid stop` and `a127 usergrid start`.
 
 * **download** - Downloads Apache Usergrid to your machine. 
 * **portal** - Opens the Usergrid portal. Use the portal to manage Usergrid projects, create data sets, manage app security, and more. The default login credentials are test/test. 
 
->Note: You must download Usergrid before you can open the portal. Or, you can execute `a127 usergrid portal --download`.
+    Note: You must download Usergrid before you can open the portal. Or, you can execute `a127 usergrid portal --download`.
 
 * **pid** - Print the pid of the currently running Usergrid service.
 * **tail** - Prints the tail of your local Usergrid service log. 
