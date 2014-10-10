@@ -34,7 +34,8 @@
     "apigee-remote-proxy": ""
   },
   "devDependencies": {
-    "should": "3.1.x"
+    "should": "4.0.x",
+    "proxyquire": "1.0.x"
   },
   "scripts": {
     "postinstall": "node lib/commands/project/download_skeleton.js",
