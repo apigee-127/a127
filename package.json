@@ -39,7 +39,9 @@
   },
   "scripts": {
     "postinstall": "node lib/commands/project/download_skeleton.js",
-    "postupdate": "node lib/commands/project/download_skeleton.js"
+    "postupdate": "node lib/commands/project/download_skeleton.js",
+    "test": "mocha -u exports -R spec test/util test/commands",
+    "coverage": "istanbul cover _mocha -- -u exports -R spec test/util test/commands"
   },
   "bin": {
     "a127": "bin/a127",
