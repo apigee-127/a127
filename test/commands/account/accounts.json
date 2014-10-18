@@ -1,0 +1,22 @@
+{
+  "accounts": {
+    "apigee": {
+      "organization": "orgname",
+      "username": "user@apigee.com",
+      "password": "bxtgMkl4NUy6",
+      "environment": "test",
+      "apigeeProxyKey": "dUBKxDozZaZ9F71L1gZUmEOdtVa9RmG",
+      "apigeeProxyUri": "http://some-test.apigee.net/apigee-remote-proxy",
+      "baseuri": "https://api.enterprise.apigee.com",
+      "virtualhosts": "default,secure",
+      "provider": "apigee"
+    },
+    "amazon": {
+      "provider": "amazon"
+    },
+    "local": {
+      "provider": "local"
+    }
+  },
+  "selected": "apigee"
+}

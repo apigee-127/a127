@@ -35,13 +35,14 @@
   },
   "devDependencies": {
     "should": "4.0.x",
-    "proxyquire": "1.0.x"
+    "proxyquire": "1.0.x",
+    "tmp": ""
   },
   "scripts": {
     "postinstall": "node lib/commands/project/download_skeleton.js",
     "postupdate": "node lib/commands/project/download_skeleton.js",
     "test": "mocha -u exports -R spec test/util test/commands",
-    "coverage": "istanbul cover _mocha -- -u exports -R spec test/util test/commands"
+    "coverage": "istanbul cover _mocha -- -u exports -R spec test/util test/commands test/commands/account"
   },
   "bin": {
     "a127": "bin/a127",

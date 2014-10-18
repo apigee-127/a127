@@ -53,6 +53,7 @@ app
 
 app
   .command('show [account]')
+  .option('-a, --account <account>', 'name of account')
   .description('Show a deployment account (name is optional - default shows current)')
   .action(execute(account.show, 'Account'));
 
@@ -87,6 +88,7 @@ app
 // todo: how to handle provider-specific extensions like this?
 app
   .command('deployments [account]')
+  .option('-a, --account <account>', 'name of account')
   .option('-l, --long', 'long format (includes URIs)')
   .description('List deployments')
   .action(execute(account.deployments, 'Deployments'));
