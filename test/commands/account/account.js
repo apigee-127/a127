@@ -49,9 +49,10 @@ describe('account', function() {
   });
 
   var accountStubs = {
-    'child_process': {
-      exec: function(name, cb) {
-        cb(null, name);
+    '../../util/cli' : {
+      updateAnswers: function(fields, account, cb) {
+        account.environment = 'tested';
+        cb(account);
       }
     }
   };
@@ -151,7 +152,13 @@ describe('account', function() {
     });
 
     describe('should update', function() {
-      it('should prompt for new values');  // todo
+
+      it('should prompt for new values', function(done) {
+        account.update('apigee', {}, function(err, values) {
+          values.should.have.property('environment', 'tested');
+          done();
+        });
+      });
     });
 
     describe('setValue', function() {
