@@ -36,7 +36,8 @@ describe('account', function() {
   var orginalAccountFile = config.account.file;
 
   before(function(done) {
-    tmp.file(function _tempFileCreated(err, tmpFile) {
+    tmp.setGracefulCleanup();
+    tmp.file(function(err, tmpFile) {
       should.not.exist(err);
       config.account.file = tmpFile;
       var sourceFile = path.join(__dirname, 'accounts.json');
@@ -223,7 +224,7 @@ describe('account', function() {
     var project;
 
     before(function(done) {
-      tmp.dir(function _tempFileCreated(err, path) {
+      tmp.dir({ unsafeCleanup: true }, function(err, path) {
         should.not.exist(err);
         project = {
           main: 'app.js',
