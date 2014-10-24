@@ -180,14 +180,14 @@ describe('cli', function() {
 
     });
 
-    beforeEach(function() {
-      logged = '';
-      exitCode = undefined;
-    });
-
     after(function() {
       process.stdout.write = oldWrite;
       process.exit = oldExit;
+    });
+
+    beforeEach(function() {
+      logged = '';
+      exitCode = undefined;
     });
 
     it('should log errors', function() {

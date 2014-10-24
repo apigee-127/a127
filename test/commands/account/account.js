@@ -30,6 +30,7 @@ var path = require('path');
 var proxyquire =  require('proxyquire');
 var tmp = require('tmp');
 var fs = require('fs');
+var helpers = require('../../helpers');
 
 describe('account', function() {
 
@@ -41,7 +42,7 @@ describe('account', function() {
       should.not.exist(err);
       config.account.file = tmpFile;
       var sourceFile = path.join(__dirname, 'accounts.json');
-      copyFile(sourceFile, tmpFile, done);
+      helpers.copyFile(sourceFile, tmpFile, done);
     });
   });
 
@@ -274,27 +275,3 @@ describe('account', function() {
 //  });
 
 });
-
-function copyFile(source, target, cb) {
-  var cbCalled = false;
-
-  var rd = fs.createReadStream(source);
-  rd.on('error', function(err) {
-    done(err);
-  });
-  var wr = fs.createWriteStream(target);
-  wr.on('error', function(err) {
-    done(err);
-  });
-  wr.on('close', function(ex) {
-    done();
-  });
-  rd.pipe(wr);
-
-  function done(err) {
-    if (!cbCalled) {
-      cb(err);
-      cbCalled = true;
-    }
-  }
-}
