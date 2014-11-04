@@ -124,6 +124,7 @@ describe('project', function() {
       var name = 'create_err';
       var projPath = path.resolve(tmpDir, name);
       fs.mkdirSync(projPath);
+      process.chdir(tmpDir);
       project.create(name, {}, function(err) {
         should.exist(err);
         done();
@@ -133,6 +134,7 @@ describe('project', function() {
     it('should create a new project', function(done) {
       var name = 'create';
       var projPath = path.resolve(tmpDir, name);
+      process.chdir(tmpDir);
       project.create(name, {}, function(err) {
         should.not.exist(err);
         var packageJson = path.resolve(projPath, 'package.json');
@@ -163,6 +165,7 @@ describe('project', function() {
 
     before(function(done) {
       projPath = path.resolve(tmpDir, name);
+      process.chdir(tmpDir);
       project.create(name, {}, function(err) {
         should.not.exist(err);
         done();
@@ -187,23 +190,15 @@ describe('project', function() {
       });
     });
 
-    describe('writeConfig', function() {
+    describe('write config', function() {
 
       var options = {
         mock: true,
         debug: 'true,test',
         account: 'apigee'
       };
-      var projectValues;
 
-//      before(function(done) {
-//        project.read(projPath, options, function(err, vals) {
-//          projectValues = vals;
-//          done();
-//        });
-//      });
-//
-      it('should write config files', function(done) {
+      it('should write files', function(done) {
 
         project.start(projPath, options, function(err) {
           should.not.exist(err);
@@ -225,7 +220,7 @@ describe('project', function() {
         });
       });
 
-      describe('print option', function() {
+      describe('with print option', function() {
         var oldWrite;
         var logged = '';
 
@@ -261,6 +256,58 @@ describe('project', function() {
 
       });
     });
+  });
+
+  describe('showConfig', function() {
+
+    var name = 'showConfig';
+    var projPath;
+    var oldWrite;
+    var logged = '';
+
+    before(function(done) {
+      projPath = path.resolve(tmpDir, name);
+      process.chdir(tmpDir);
+      project.create(name, {}, function(err) {
+        should.not.exist(err);
+
+        oldWrite = process.stdout.write;
+        process.stdout.write = (function(write) {
+          return function(string) {
+            logged += string;
+          };
+        }(process.stdout.write));
+
+        done();
+      });
+    });
+
+    after(function() {
+      process.stdout.write = oldWrite;
+    });
+
+    it('should emit config', function(done) {
+
+      var options = {
+        account: 'local',
+        print: true
+      };
+      project.showConfig(projPath, options, function(err) {
+        should.not.exist(err);
+
+        var basicStuff = {
+          provider: 'local',
+          name: 'local',
+          _a127_start_config: {
+            debug: null,
+            mock: null
+          }
+        };
+        logged.should.containDeep(yaml.stringify(basicStuff));
+
+        done();
+      })
+    })
   });
 
 });
