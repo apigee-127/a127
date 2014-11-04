@@ -42,8 +42,7 @@ var helpers = require('../../helpers');
  docs: docs,
  deploy: deploy,
  undeploy: undeploy,
- showConfig: showConfig,
- downloadSkeleton: downloadSkeleton
+ showConfig: showConfig
  */
 
 describe('project', function() {
