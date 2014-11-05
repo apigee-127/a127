@@ -85,7 +85,7 @@ describe('project', function() {
     capture.release();
   });
 
-  var didEdit, didOpen;
+  var didEdit, didOpen, didDeploy, didUndeploy;
   var nodemonOpts = {};
   var projectStubs = {
     'child_process': {
@@ -138,6 +138,16 @@ describe('project', function() {
     '../../util/net': {
       isPortOpen: function(port, cb) {
         cb(null, true);
+      }
+    },
+    '../account/account': {
+      deployProject: function(project, options, cb) {
+        didDeploy = true;
+        cb();
+      },
+      undeployProject: function(project, options, cb) {
+        didUndeploy = true;
+        cb();
       }
     }
   };
@@ -380,9 +390,9 @@ describe('project', function() {
     });
   });
 
-  describe('edit', function() {
+  describe('basic functions', function() {
 
-    var name = 'edit';
+    var name = 'basic';
     var projPath;
 
     before(function(done) {
@@ -391,30 +401,34 @@ describe('project', function() {
       project.create(name, {}, done);
     });
 
-    it('should exec editor', function(done) {
+    it('edit should exec editor', function(done) {
       project.edit(projPath, {}, function(err) {
         should.not.exist(err);
         should(didEdit).true;
         done();
       });
     });
-  });
 
-  describe('open', function() {
-
-    var name = 'open';
-    var projPath;
-
-    before(function(done) {
-      projPath = path.resolve(tmpDir, name);
-      process.chdir(tmpDir);
-      project.create(name, {}, done);
-    });
-
-    it('should exec browser open', function(done) {
+    it('open should exec browser', function(done) {
       project.open(projPath, {}, function(err) {
         should.not.exist(err);
         should(didOpen).true;
+        done();
+      });
+    });
+
+    it('deploy should call account deploy', function(done) {
+      project.deploy(projPath, {}, function(err) {
+        should.not.exist(err);
+        should(didDeploy).true;
+        done();
+      });
+    });
+
+    it('undeploy should call account undeploy', function(done) {
+      project.undeploy(projPath, {}, function(err) {
+        should.not.exist(err);
+        should(didUndeploy).true;
         done();
       });
     });
