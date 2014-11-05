@@ -36,11 +36,12 @@
   "devDependencies": {
     "should": "4.0.x",
     "proxyquire": "1.0.x",
-    "tmp": ""
+    "tmp": "",
+    "superagent": ""
   },
   "scripts": {
-    "test": "mocha -u exports -R spec test/util test/commands test/commands/account test/commands/project",
-    "coverage": "istanbul cover _mocha -- -u exports -R spec test/util test/commands test/commands/account test/commands/project"
+    "test": "mocha -u exports -R spec test/util test/commands test/commands/account test/commands/project test/commands/service",
+    "coverage": "istanbul cover _mocha -- -u exports -R spec test/util test/commands test/commands/account test/commands/project test/commands/service"
   },
   "bin": {
     "a127": "bin/a127",
