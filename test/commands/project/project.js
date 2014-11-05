@@ -85,6 +85,7 @@ describe('project', function() {
     capture.release();
   });
 
+  var didEdit, didOpen;
   var nodemonOpts = {};
   var projectStubs = {
     'child_process': {
@@ -121,6 +122,23 @@ describe('project', function() {
         nodemonOpts.cb = cb;
       },
       '@noCallThru': true
+    },
+    '../service/swagger_editor': {
+      edit: function(directory, options, cb) {
+        didEdit = true;
+        cb();
+      }
+    },
+    '../../util/browser': {
+      open: function(url, cb) {
+        didOpen = true;
+        cb();
+      }
+    },
+    '../../util/net': {
+      isPortOpen: function(port, cb) {
+        cb(null, true);
+      }
     }
   };
   var project = proxyquire('../../../lib/commands/project/project', projectStubs);
@@ -173,10 +191,7 @@ describe('project', function() {
     before(function(done) {
       projPath = path.resolve(tmpDir, name);
       process.chdir(tmpDir);
-      project.create(name, {}, function(err) {
-        should.not.exist(err);
-        done();
-      });
+      project.create(name, {}, done);
     });
 
     it('should pass debug debug options', function(done) {
@@ -257,11 +272,7 @@ describe('project', function() {
     before(function(done) {
       projPath = path.resolve(tmpDir, name);
       process.chdir(tmpDir);
-      project.create(name, {}, function(err) {
-        should.not.exist(err);
-        done();
-      });
-    });
+      project.create(name, {}, done);    });
 
     it('should emit config', function(done) {
 
@@ -368,4 +379,45 @@ describe('project', function() {
       })
     });
   });
+
+  describe('edit', function() {
+
+    var name = 'edit';
+    var projPath;
+
+    before(function(done) {
+      projPath = path.resolve(tmpDir, name);
+      process.chdir(tmpDir);
+      project.create(name, {}, done);
+    });
+
+    it('should exec editor', function(done) {
+      project.edit(projPath, {}, function(err) {
+        should.not.exist(err);
+        should(didEdit).true;
+        done();
+      });
+    });
+  });
+
+  describe('open', function() {
+
+    var name = 'open';
+    var projPath;
+
+    before(function(done) {
+      projPath = path.resolve(tmpDir, name);
+      process.chdir(tmpDir);
+      project.create(name, {}, done);
+    });
+
+    it('should exec browser open', function(done) {
+      project.open(projPath, {}, function(err) {
+        should.not.exist(err);
+        should(didOpen).true;
+        done();
+      });
+    });
+  });
+
 });
