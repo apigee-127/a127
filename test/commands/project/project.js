@@ -51,7 +51,6 @@ describe('project', function() {
   var spawn = {};
 
   var orginalAccountFile = config.account.file;
-
   before(function(done) {
     tmp.setGracefulCleanup();
 
@@ -75,6 +74,15 @@ describe('project', function() {
 
   after(function() {
     config.account.file = orginalAccountFile;
+  });
+
+  var capture;
+  beforeEach(function() {
+    capture = helpers.captureOutput();
+  });
+
+  afterEach(function() {
+    capture.release();
   });
 
   var nodemonOpts = {};
@@ -220,22 +228,6 @@ describe('project', function() {
       });
 
       describe('with print option', function() {
-        var oldWrite;
-        var logged = '';
-
-        before(function() {
-          oldWrite = process.stdout.write;
-          process.stdout.write = (function(write) {
-            return function(string, encoding, fd) {
-              var args = Array.prototype.slice.call(arguments);
-              logged += string;
-            };
-          }(process.stdout.write));
-        });
-
-        after(function() {
-          process.stdout.write = oldWrite;
-        });
 
         it('should emit config', function(done) {
 
@@ -248,7 +240,7 @@ describe('project', function() {
 
             var secretsFile = path.join(projPath, 'config', '.a127_secrets');
             var secrets = yaml.parse(fs.readFileSync(secretsFile, { encoding: 'utf8' }));
-            logged.should.containDeep(yaml.stringify(secrets));
+            capture.output().should.containDeep(yaml.stringify(secrets));
             done();
           })
         })
@@ -257,32 +249,18 @@ describe('project', function() {
     });
   });
 
-  describe('showConfig', function() {
+  describe('show config', function() {
 
     var name = 'showConfig';
     var projPath;
-    var oldWrite;
-    var logged = '';
 
     before(function(done) {
       projPath = path.resolve(tmpDir, name);
       process.chdir(tmpDir);
       project.create(name, {}, function(err) {
         should.not.exist(err);
-
-        oldWrite = process.stdout.write;
-        process.stdout.write = (function(write) {
-          return function(string) {
-            logged += string;
-          };
-        }(process.stdout.write));
-
         done();
       });
-    });
-
-    after(function() {
-      process.stdout.write = oldWrite;
     });
 
     it('should emit config', function(done) {
@@ -302,11 +280,92 @@ describe('project', function() {
             mock: null
           }
         };
-        logged.should.containDeep(yaml.stringify(basicStuff));
+        capture.output().should.containDeep(yaml.stringify(basicStuff));
 
         done();
       })
     })
   });
 
+  describe('verify', function() {
+
+    describe('no errors', function() {
+
+      var name = 'verifyGood';
+      var projPath;
+
+      before(function(done) {
+        projPath = path.resolve(tmpDir, name);
+        process.chdir(tmpDir);
+        project.create(name, {}, done);
+      });
+
+      it('should emit nothing, return summary', function(done) {
+
+        project.verify(projPath, {}, function(err, reply) {
+          should.not.exist(err);
+
+          capture.output().should.equal('');
+          reply.should.equal('Results: 0 errors, 0 warnings');
+          done();
+        })
+      });
+
+      it('w/ json option should emit nothing, return nothing', function(done) {
+
+        project.verify(projPath, { json: true }, function(err, reply) {
+          should.not.exist(err);
+
+          capture.output().should.equal('');
+          reply.should.equal('');
+          done();
+        })
+      })
+    });
+
+
+    describe('with errors', function() {
+
+      var name = 'verifyBad';
+      var projPath;
+
+      before(function(done) {
+        projPath = path.resolve(tmpDir, name);
+        process.chdir(tmpDir);
+        project.create(name, {}, function() {
+          var sourceFile = path.join(__dirname, 'badswagger.yaml');
+          var destFile = path.join(projPath, 'api', 'swagger', 'swagger.yaml');
+          helpers.copyFile(sourceFile, destFile, done);
+        });
+      });
+
+      it('should emit errors, return summary', function(done) {
+
+        project.verify(projPath, {}, function(err, reply) {
+          should.not.exist(err);
+
+          capture.output().should.containDeep('#/swagger: Invalid type: integer should be string');
+          reply.should.equal('Results: 1 errors, 0 warnings');
+          done();
+        })
+      });
+
+      it('json option should emit as json', function(done) {
+
+        project.verify(projPath, { json: true }, function(err, reply) {
+          should.not.exist(err);
+
+          var json = JSON.parse(reply);
+          json.should.have.keys('errors', 'warnings')
+          json.errors.should.be.an.Array;
+          var error = json.errors[0];
+          error.should.have.property('code', 'VALIDATION_INVALID_TYPE');
+          error.should.have.property('message', 'Invalid type: integer should be string');
+          error.should.have.property('data', 2);
+          error.should.have.property('path', [ 'swagger' ]);
+          done();
+        })
+      })
+    });
+  });
 });

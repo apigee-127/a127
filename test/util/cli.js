@@ -27,6 +27,7 @@ var should = require('should');
 var config = require('../../config');
 var proxyquire =  require('proxyquire');
 var _ = require('lodash');
+var helpers = require('../helpers');
 
 describe('cli', function() {
 
@@ -157,37 +158,29 @@ describe('cli', function() {
 
   describe('printAndExit', function() {
 
-    var oldWrite = process.stdout.write;
     var oldExit = process.exit;
     var exitCode;
-    var logged;
 
     before(function() {
-
       process.exit = (function() {
         return function(code) {
           exitCode = code;
         }
       })();
-
-      oldWrite = process.stdout.write;
-      process.stdout.write = (function(write) {
-        return function(string, encoding, fd) {
-          var args = Array.prototype.slice.call(arguments);
-          logged += string;
-        };
-      }(process.stdout.write));
-
     });
 
     after(function() {
-      process.stdout.write = oldWrite;
       process.exit = oldExit;
     });
 
+    var capture;
     beforeEach(function() {
-      logged = '';
+      capture = helpers.captureOutput();
       exitCode = undefined;
+    });
+
+    afterEach(function() {
+      capture.release();
     });
 
     it('should log errors', function() {
@@ -200,28 +193,28 @@ describe('cli', function() {
 
       cli.printAndExit(null, 'test');
       exitCode.should.equal(0);
-      logged.should.equal('test\n');
+      capture.output().should.equal('test\n');
     });
 
     it('should log simple objects', function() {
 
       cli.printAndExit(null, { test: 1 });
       exitCode.should.equal(0);
-      logged.should.equal('test: 1\n\n');
+      capture.output().should.equal('test: 1\n\n');
     });
 
     it('should log complex objects', function() {
 
       cli.printAndExit(null, { test: { test: 1 } });
       exitCode.should.equal(0);
-      logged.should.equal('test:\n  test: 1\n\n');
+      capture.output().should.equal('test:\n  test: 1\n\n');
     });
 
     it('should hide passwords', function() {
 
       cli.printAndExit(null, { password: 1 });
       exitCode.should.equal(0);
-      logged.should.equal("password: '******'\n\n");
+      capture.output().should.equal("password: '******'\n\n");
     });
 
     describe('execute', function() {
@@ -233,28 +226,28 @@ describe('cli', function() {
       it('should error if no command', function() {
         cli.execute(null, 'whatever')();
         exitCode.should.equal(1);
-        logged.should.equal('[Error: missing command method]\n');
+        capture.output().should.equal('[Error: missing command method]\n');
       });
 
       it("should error if arguments don't match", function() {
 
         cli.execute(executeNoError, 'whatever')();
         exitCode.should.equal(1);
-        logged.should.equal('[Error: incorrect arguments]\n');
+        capture.output().should.equal('[Error: incorrect arguments]\n');
       });
 
       it('should print the result of the command', function() {
 
         cli.execute(executeNoError)(1);
         exitCode.should.equal(0);
-        logged.should.equal('1\n');
+        capture.output().should.equal('1\n');
       });
 
       it('should print the result with header', function() {
 
         cli.execute(executeNoError, 'whatever')(1);
         exitCode.should.equal(0);
-        logged.should.equal('whatever\n========\n1\n');
+        capture.output().should.equal('whatever\n========\n1\n');
       });
 
     });
