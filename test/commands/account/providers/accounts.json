@@ -1,0 +1,8 @@
+{
+  "accounts": {
+    "amazon": {
+      "provider": "amazon"
+    }
+  },
+  "selected": "amazon"
+}
