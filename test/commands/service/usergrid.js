@@ -49,7 +49,7 @@ describe('usergrid', function() {
   var processGone;
 
   var usergridStubs = {
-    'usergrid-installer': { // todo
+    'usergrid-installer': {
       launcherFile: function(download, cb) {
         cb(null, (launcherFileExists || download) ? launcherFile : null);
       },
