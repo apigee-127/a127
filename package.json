@@ -39,8 +39,8 @@
     "superagent": ""
   },
   "scripts": {
-    "test": "mocha -u exports -R spec test/util test/commands test/commands/account test/commands/project test/commands/service",
-    "coverage": "istanbul cover _mocha -- -u exports -R spec test/util test/commands test/commands/account test/commands/project test/commands/service"
+    "test": "mocha -u exports -R spec test/util test/commands test/commands/account test/commands/project test/commands/service test/commands/account/providers",
+    "coverage": "istanbul cover _mocha -- -u exports -R spec test/util test/commands test/commands/account test/commands/project test/commands/service  test/commands/account/providers"
   },
   "bin": {
     "a127": "bin/a127",
