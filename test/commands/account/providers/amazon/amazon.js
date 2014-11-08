@@ -25,15 +25,15 @@
 
 var should = require('should');
 var util = require('util');
-var config = require('../../../../config');
+var config = require('../../../../../config/index');
 var path = require('path');
 var proxyquire =  require('proxyquire');
 var tmp = require('tmp');
 var fs = require('fs');
-var helpers = require('../../../helpers');
+var helpers = require('../../../../helpers');
 
 var projectStubs = {
-  'child_process': {
+  child_process: {
     spawn: function(command, args, options) {
       var ret = {};
       ret.stdout = {
@@ -52,7 +52,7 @@ var projectStubs = {
     }
   }
 };
-var project = proxyquire('../../../../lib/commands/project/project.js', projectStubs);
+var project = proxyquire('../../../../../lib/commands/project/project.js', projectStubs);
 
 
 describe('amazon', function() {
@@ -71,7 +71,8 @@ describe('amazon', function() {
 
         config.account.file = tmpFile;
         var sourceFile = path.join(__dirname, 'accounts.json');
-        helpers.copyFile(sourceFile, tmpFile, function() {
+        helpers.copyFile(sourceFile, tmpFile, function(err) {
+          should.not.exist(err);
 
           // set up project dir
           tmp.dir({ unsafeCleanup: true }, function(err, path) {
