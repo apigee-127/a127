@@ -59,7 +59,8 @@ describe('project', function() {
       should.not.exist(err);
       config.account.file = tmpFile;
       var sourceFile = path.join(__dirname, '..', 'account', 'accounts.json');
-      helpers.copyFile(sourceFile, tmpFile, function() {
+      helpers.copyFile(sourceFile, tmpFile, function(err) {
+        should.not.exist(err);
 
         // set up project dir
         tmp.dir({ unsafeCleanup: true }, function(err, path) {

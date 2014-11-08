@@ -3,27 +3,21 @@ var _ = require('lodash');
 var util = require('util');
 
 module.exports.copyFile = function(source, target, cb) {
-  var cbCalled = false;
+  cb = _.once(cb);
 
   var rd = fs.createReadStream(source);
   rd.on('error', function(err) {
-    done(err);
+    cb(err);
   });
+
   var wr = fs.createWriteStream(target);
   wr.on('error', function(err) {
-    done(err);
+    cb(err);
   });
-  wr.on('close', function(ex) {
-    done();
+  wr.on('close', function(err) {
+    cb(err);
   });
   rd.pipe(wr);
-
-  function done(err) {
-    if (!cbCalled) {
-      cb(err);
-      cbCalled = true;
-    }
-  }
 };
 
 // intercepts stdout and stderr
