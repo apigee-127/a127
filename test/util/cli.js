@@ -287,4 +287,13 @@ describe('cli', function() {
     });
   });
 
+  describe('version', function() {
+
+    it('should return the version', function() {
+
+      var version = require('../../package.json').version;
+      cli.version().should.eql(version);
+    });
+  });
+
 });

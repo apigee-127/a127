@@ -27,6 +27,8 @@
 var app = require('commander');
 var browser = require('../lib/util/browser');
 
+app.version(require('../lib/util/cli').version());
+
 app
   .command('account <action>', 'manage deployment accounts')
   .command('project <action>', 'manage a project')
