@@ -82,6 +82,25 @@ describe('browser', function() {
 
   });
 
+  describe('Linux', function () {
+
+    it('should open', function(done) {
+      browser.open(URL, function(err, command) {
+        command.should.equal(util.format('xdg-open "%s"', URL));
+        done();
+      }, 'linux');
+    });
+
+    it('should honor config', function(done) {
+      var browserPath = config.browser = '/usr/bin/x-www-browser';
+      browser.open(URL, function(err, command) {
+        command.should.equal(util.format('%s "%s"', browserPath, URL));
+        done();
+      }, 'linux')
+    });
+
+  });
+
   describe('other Unix', function() {
 
     it('should err if not configured', function(done) {
@@ -89,7 +108,7 @@ describe('browser', function() {
       browser.open(URL, function(err, command) {
         should.exist(err);
         done();
-      }, 'linux')
+      }, 'foo')
     });
 
     it('should honor config', function(done) {
@@ -97,7 +116,7 @@ describe('browser', function() {
       browser.open(URL, function(err, command) {
         command.should.equal(util.format('%s "%s"', browserPath, URL));
         done();
-      }, 'linux')
+      }, 'foo')
     });
 
   });
