@@ -20,6 +20,7 @@
     "lodash": "2.4.x",
     "ncp": "0.6.x",
     "nodemon": "1.2.x",
+    "request": "^2.47.0",
     "unzip": "0.1.x",
     "tail": "0.3.x",
     "yamljs": "0.1.x",
