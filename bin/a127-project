@@ -61,6 +61,13 @@ app
   .description('Open project in a browser')
   .action(execute(project.open));
 
+app
+  .command('logs [directory]')
+  .option('-f, --follow', 'follow (tail -f) the logs')
+  .option('-t, --timezone [timezone]', 'convert the log times from UTC to specified timezone (eg. PST)')
+  .description('Print the logs for a project')
+  .action(execute(project.logs));
+
 //app
 //  .command('docs [directory]')
 //  .description('View project docs in a browser')

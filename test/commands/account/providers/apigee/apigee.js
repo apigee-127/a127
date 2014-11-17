@@ -56,6 +56,10 @@ var apigeeStubs = {
     deployRemoteProxy: function(opts, cb) {
       apigeetoolOpts = opts;
       cb();
+    },
+    getLogs: function(opts, cb) {
+      apigeetoolOpts = opts;
+      cb();
     }
   },
   'volos-management-apigee': {
@@ -257,6 +261,31 @@ describe('apigee', function() {
         debug: config.debug,
         verbose: config.debug,
         long: options.long
+      };
+
+      apigeetoolOpts.should.eql(expected);
+
+      done();
+    })
+  });
+
+  it('should retrieve logs', function(done) {
+
+    var project = { name: 'myname' };
+    apigee.logs(account, project, {}, function(err, reply) {
+      should.not.exist(err);
+
+      should.exist(apigeetoolOpts);
+
+      var expected = {
+        baseuri: account.baseuri,
+        organization: account.organization,
+        environment: account.environment,
+        username: account.username,
+        password: account.password,
+        debug: config.debug,
+        verbose: config.debug,
+        api: project.name
       };
 
       apigeetoolOpts.should.eql(expected);
