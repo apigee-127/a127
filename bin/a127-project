@@ -63,8 +63,9 @@ app
 
 app
   .command('logs [directory]')
+  .option('-a, --account <account>', 'use specified account')
   .option('-f, --follow', 'follow (tail -f) the logs')
-  .option('-t, --timezone [timezone]', 'convert the log times from UTC to specified timezone (eg. PST)')
+  .option('-t, --timezone <timezone>', 'convert the log times from UTC to specified timezone (eg. PST)')
   .description('Print the logs for a project')
   .action(execute(project.logs));
 

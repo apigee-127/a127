@@ -252,7 +252,7 @@ describe('account', function() {
       var options = { account: 'local' };
       account.deployProject(project, options, function(err) {
         should.exist(err);
-        err.message.should.equal('not valid for local account');
+        err.message.should.equal('command is not valid for local account');
         done();
       });
     });
