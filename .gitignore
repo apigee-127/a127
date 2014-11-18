@@ -26,3 +26,9 @@ node_modules
 
 # Other
 tmp
+
+#IDE stuff
+.DS_Store
+.idea
+*.iml
+
