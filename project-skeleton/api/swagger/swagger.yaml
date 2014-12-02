@@ -18,13 +18,13 @@ consumes:
 produces:
   - application/json
 x-a127-config: {}
-x-volos-resources: {}
+x-a127-services: {}
 paths:
   /hello:
     # binds a127 app logic to a route
     x-swagger-router-controller: hello_world
-    x-volos-authorizations: {}
-    x-volos-apply: {}
+    x-a127-authorizations: {}
+    x-a127-apply: {}
     get:
       description: Returns 'Hello' to the caller
       # used as the method name of the controller
