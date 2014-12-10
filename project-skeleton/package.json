@@ -19,6 +19,7 @@
     "volos-quota-apigee": "",
     "volos-quota-memory": "",
     "volos-quota-redis": "",
+    "volos-spikearrest-memory": "",
     "volos-oauth-redis": "",
     "volos-oauth-apigee": ""
   },
