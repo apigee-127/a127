@@ -26,10 +26,10 @@
     "yamljs": "0.1.x",
     "jszip": "2.4.x",
     "swagger-editor-for-apigee-127": "2.7.2",
-    "swagger-tools": "^0.6.3",
+    "swagger-tools": "^0.7.0",
     "usergrid-installer": "^0.0.5",
     "volos-management-apigee": "",
-    "a127-magic": "^0.6.0",
+    "a127-magic": "^0.7.0",
     "apigee-remote-proxy": "^0.10.0",
     "connect": "3.3.x",
     "serve-static": "1.7.x"
