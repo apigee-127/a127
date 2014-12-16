@@ -366,7 +366,7 @@ describe('project', function() {
         project.verify(projPath, {}, function(err, reply) {
           should.not.exist(err);
 
-          capture.output().should.containDeep('#/swagger: Invalid type: integer should be string');
+          capture.output().should.containDeep('\nProject Errors\n--------------\n#/swagger: Expected type string but found type integer\n');
           reply.should.equal('Results: 1 errors, 0 warnings');
           done();
         })
@@ -381,10 +381,10 @@ describe('project', function() {
           json.should.have.keys('errors', 'warnings')
           json.errors.should.be.an.Array;
           var error = json.errors[0];
-          error.should.have.property('code', 'VALIDATION_INVALID_TYPE');
-          error.should.have.property('message', 'Invalid type: integer should be string');
-          error.should.have.property('data', 2);
+          error.should.have.property('code', 'INVALID_TYPE');
+          error.should.have.property('message', 'Expected type string but found type integer');
           error.should.have.property('path', [ 'swagger' ]);
+          error.should.have.property('description', 'The Swagger version of this document.');
           done();
         })
       })
