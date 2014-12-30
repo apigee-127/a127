@@ -78,6 +78,14 @@ config.project = {
   skeletonDir: path.resolve(__dirname, '..', 'project-skeleton')
 };
 
+
+// services //
+
+config.services = {
+  file: path.resolve(config.tmpDir, 'services')
+};
+
+
 // load home directory config
 loadUserConfig();
 

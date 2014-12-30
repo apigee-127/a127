@@ -48,6 +48,7 @@
     "a127": "bin/a127",
     "a127-account": "bin/a127-account",
     "a127-project": "bin/a127-project",
+    "a127-service": "bin/a127-service",
     "a127-usergrid": "bin/a127-usergrid"
   },
   "repository": {

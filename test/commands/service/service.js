@@ -1,4 +1,3 @@
-#!/usr/bin/env node
 /****************************************************************************
  The MIT License (MIT)
 
@@ -24,41 +23,31 @@
  ****************************************************************************/
 'use strict';
 
-var app = require('commander');
-var browser = require('../lib/util/browser');
+var should = require('should');
+var util = require('util');
+var config = require('../../../config');
+var path = require('path');
+var proxyquire =  require('proxyquire');
+var tmp = require('tmp');
+var fs = require('fs');
+var yaml = require('yamljs');
+var helpers = require('../../helpers');
 
-app.version(require('../lib/util/cli').version());
+/*
+ list
+ create
+ delete
+ types
+ */
 
-app
-  .command('account <action>', 'manage deployment accounts')
-  .command('project <action>', 'manage a project')
-  .command('service <action>', 'manage services')
-  .command('usergrid <action>', 'manage Usergrid process');
+describe('service', function() {
 
-app
-  .command('config')
-  .description('print config')
-  .action(function() {
-    var config = require('../config');
-    var cli = require('../lib/util/cli');
-    cli.printAndExit(null, config);
-  });
+  it('should list');
 
-app
-  .command('wiki')
-  .description('load the apigee-127 wiki')
-  .action(function() {
-    browser.open('https://github.com/apigee-127/a127-documentation/wiki', function(){
-      process.exit(0);
-    });
-  });
+  it('should delete');
 
-app.parse(process.argv);
+  it('should list types');
 
-if (!app.runningCommand) {
-  if (app.args.length > 0) {
-    console.log();
-    console.log('error: invalid command: ' + app.args[0]);
-  }
-  app.help();
-}
+  it('should list types');
+
+});

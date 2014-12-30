@@ -37,8 +37,8 @@ app
 app
   .command('start [directory]')
   .description('Start the project locally')
-  .option('-d, --debug [port]', 'start in remote debug mode')
-  .option('-b, --debug-brk [port]', 'start in remote debug mode, wait for debugger connect')
+  .option('-d, --debug <port>', 'start in remote debug mode')
+  .option('-b, --debug-brk <port>', 'start in remote debug mode, wait for debugger connect')
   .option('-m, --mock', 'start in mock mode')
   .option('-o, --open', 'open in browser')
   .option('-a, --account <account>', 'use specified account for configuration')
@@ -73,6 +73,21 @@ app
 //  .command('docs [directory]')
 //  .description('View project docs in a browser')
 //  .action(execute(project.docs));
+
+app
+  .command('bind <service> [directory]')
+  .description('Bind the project to a service')
+  .action(execute(project.bind));
+
+app
+  .command('unbind <service> [directory]')
+  .description('Unbind the project from a service')
+  .action(execute(project.unbind));
+
+app
+  .command('services [directory]')
+  .description('List services bound to the project')
+  .action(execute(project.unbind));
 
 app
   .command('deploy [directory]')

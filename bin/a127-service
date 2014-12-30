@@ -25,40 +25,32 @@
 'use strict';
 
 var app = require('commander');
-var browser = require('../lib/util/browser');
-
-app.version(require('../lib/util/cli').version());
-
-app
-  .command('account <action>', 'manage deployment accounts')
-  .command('project <action>', 'manage a project')
-  .command('service <action>', 'manage services')
-  .command('usergrid <action>', 'manage Usergrid process');
+var service = require('../lib/commands/service/service');
+var cli = require('../lib/util/cli');
+var execute = cli.execute;
 
 app
-  .command('config')
-  .description('print config')
-  .action(function() {
-    var config = require('../config');
-    var cli = require('../lib/util/cli');
-    cli.printAndExit(null, config);
-  });
+  .command('create <name>')
+  .option('-a, --account <account>', 'use specified account')
+  .option('-t, --type <type>', 'create specified service type')
+  .description('Create a service to be used by projects')
+  .action(execute(service.create, 'Service'));
 
 app
-  .command('wiki')
-  .description('load the apigee-127 wiki')
-  .action(function() {
-    browser.open('https://github.com/apigee-127/a127-documentation/wiki', function(){
-      process.exit(0);
-    });
-  });
+  .command('delete <name>')
+  .description('Delete a service')
+  .action(execute(service.delete));
+
+app
+  .command('list')
+  .alias('ls')
+  .description('List services')
+  .action(execute(service.list, 'Services'));
+
+app
+  .command('types [account]')
+  .description('List service types for an Account')
+  .action(execute(service.types, 'Service Types'));
 
 app.parse(process.argv);
-
-if (!app.runningCommand) {
-  if (app.args.length > 0) {
-    console.log();
-    console.log('error: invalid command: ' + app.args[0]);
-  }
-  app.help();
-}
+cli.validate(app);

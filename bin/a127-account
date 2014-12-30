@@ -85,6 +85,17 @@ app
   .description('List available providers')
   .action(execute(account.providers, 'Providers'));
 
+//app
+//  .command('service-types [account]')
+//  .description('List services types available to create for an Account')
+//  .action(execute(account.services, 'Services'));
+//
+//app
+//  .command('services [account]')
+//  .description('List services created on this account')
+//  .action(execute(account.services, 'Services'));
+//
+
 // todo: how to handle provider-specific extensions like this?
 app
   .command('deployments [account]')
