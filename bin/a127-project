@@ -54,6 +54,7 @@ app
 app
   .command('edit [directory]')
   .description('Open swagger editor')
+  .option('-s --silent', 'do not open the browser')
   .action(execute(project.edit));
 
 app
