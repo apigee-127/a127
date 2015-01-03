@@ -75,19 +75,19 @@ app
 //  .action(execute(project.docs));
 
 app
-  .command('bind <service> [directory]')
+  .command('bind [service] [directory]')
   .description('Bind the project to a service')
   .action(execute(project.bind));
 
 app
-  .command('unbind <service> [directory]')
+  .command('unbind [service] [directory]')
   .description('Unbind the project from a service')
   .action(execute(project.unbind));
 
 app
-  .command('services [directory]')
+  .command('bindings [directory]')
   .description('List services bound to the project')
-  .action(execute(project.unbind));
+  .action(execute(project.bindings, 'Service Bindings'));
 
 app
   .command('deploy [directory]')
