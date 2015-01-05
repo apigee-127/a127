@@ -410,6 +410,14 @@ describe('project', function() {
       });
     });
 
+     it('edit should exec editor with --silent flag', function(done) {
+      project.edit(projPath, {silent: true}, function(err) {
+        should.not.exist(err);
+        should(didEdit).true;
+        done();
+      });
+    });
+
     it('open should exec browser', function(done) {
       project.open(projPath, {}, function(err) {
         should.not.exist(err);
