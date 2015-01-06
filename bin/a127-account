@@ -38,8 +38,9 @@ app
   .option('-w, --password <password>', 'password')
   .option('-e, --environment <environment>', 'environment')
   .option('-v, --virtualhosts <virtualhosts>', 'virtual hosts')
+  .option('-n, --noservice', 'no create service prompt')
   .description('Create a new deployment account')
-  .action(execute(account.create, 'Account'));
+  .action(execute(account.create));
 
 app
   .command('delete [account]')
