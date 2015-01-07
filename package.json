@@ -32,7 +32,8 @@
     "a127-magic": "^0.7.0",
     "apigee-remote-proxy": "^0.10.0",
     "connect": "3.3.x",
-    "serve-static": "1.7.x"
+    "serve-static": "1.7.x",
+    "mocha": "2.1.x"
   },
   "devDependencies": {
     "should": "4.0.x",
