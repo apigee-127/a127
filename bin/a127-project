@@ -100,7 +100,7 @@ app
   .action(execute(project.showConfig));
 
 app
-  .command('test [directory]')
+  .command('test [directory_or_file]')
   .description('Run project tests')
   .option('-d, --debug [port]', 'start in remote debug mode')
   .option('-b, --debug-brk [port]', 'start in remote debug mode, wait for debugger connect')
