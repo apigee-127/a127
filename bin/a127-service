@@ -30,7 +30,7 @@ var cli = require('../lib/util/cli');
 var execute = cli.execute;
 
 app
-  .command('create <name>')
+  .command('create [name]')
   .option('-a, --account <account>', 'use specified account')
   .option('-t, --type <type>', 'create specified service type')
   .description('Create a service to be used by projects')
