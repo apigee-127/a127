@@ -24,7 +24,8 @@
     "volos-oauth-apigee": ""
   },
   "devDependencies":  {
-    "should" : "3.1.x"
+    "should": "4.4.x",
+    "supertest": "0.15.x"
   },
   "scripts" : {
     "start" : "node app.js"

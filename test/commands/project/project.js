@@ -366,8 +366,8 @@ describe('project', function() {
         project.verify(projPath, {}, function(err, reply) {
           should.not.exist(err);
 
-          capture.output().should.containDeep('\nProject Errors\n--------------\n#/swagger: Expected type string but found type integer\n');
-          reply.should.equal('Results: 1 errors, 0 warnings');
+          capture.output().should.containDeep('\nProject Errors\n--------------\n#/swagger:');
+          reply.should.containDeep('Results:');
           done();
         })
       });
@@ -404,6 +404,14 @@ describe('project', function() {
 
     it('edit should exec editor', function(done) {
       project.edit(projPath, {}, function(err) {
+        should.not.exist(err);
+        should(didEdit).true;
+        done();
+      });
+    });
+
+     it('edit should exec editor with --silent flag', function(done) {
+      project.edit(projPath, {silent: true}, function(err) {
         should.not.exist(err);
         should(didEdit).true;
         done();

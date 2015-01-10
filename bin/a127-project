@@ -41,7 +41,7 @@ app
   .option('-b, --debug-brk <port>', 'start in remote debug mode, wait for debugger connect')
   .option('-m, --mock', 'start in mock mode')
   .option('-o, --open', 'open in browser')
-  .option('-a, --account <account>', 'use specified account for configuration')
+  .option('-a, --account <account>', 'use specified account')
   .option('-p, --print', 'print configuration')
   .action(execute(project.start));
 
@@ -54,6 +54,7 @@ app
 app
   .command('edit [directory]')
   .description('Open swagger editor')
+  .option('-s --silent', 'do not open the browser')
   .action(execute(project.edit));
 
 app
@@ -86,6 +87,7 @@ app
 
 app
   .command('bindings [directory]')
+  .alias('services')
   .description('List services bound to the project')
   .action(execute(project.bindings, 'Service Bindings'));
 
@@ -98,7 +100,6 @@ app
   .option('-n, --name <name>', 'override deployment name')
   .option('-i, --import-only', "Apigee only: import project to provider, but don't deploy")
   .option('-u, --upload', 'Apigee only: upload node_modules instead of resolving on server')
-//  .option('-d, --docs <path>', 'override deployment docs path (default is /docs)')
   .action(execute(project.deploy));
 
 app
@@ -113,6 +114,16 @@ app
   .description('Show all project configuration elements given current account')
   .option('-a, --account <account>', 'use specified account for configuration')
   .action(execute(project.showConfig));
+
+app
+  .command('test [directory_or_file]')
+  .description('Run project tests')
+  .option('-d, --debug [port]', 'start in remote debug mode')
+  .option('-b, --debug-brk [port]', 'start in remote debug mode, wait for debugger connect')
+  .option('-a, --account <account>', 'use specified account')
+  .option('-m, --mock', 'run in mock mode')
+  .option('-p, --print', 'print configuration')
+  .action(execute(project.test));
 
 app.parse(process.argv);
 cli.validate(app);

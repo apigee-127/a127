@@ -4,8 +4,7 @@ var a127 = require('a127-magic');
 var express = require('express');
 var app = express();
 
-// uncomment the following if you need to parse incoming form data
-//app.use(express.bodyParser());
+module.exports = app; // for testing
 
 a127.init(function(config) {
 

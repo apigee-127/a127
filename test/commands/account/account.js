@@ -100,10 +100,10 @@ describe('account', function() {
   describe('select', function() {
 
     it('should select via name', function(done) {
-      account.select('local', {}, function(err, values) {
+      account.select('local', {}, function(err, result) {
         should.not.exist(err);
-        values.provider.should.equal('local');
-        account.list(null, function(err, names) {
+        result.should.containDeep('local');
+        account.list({}, function(err, names) {
           names.should.containEql('local +');
           done();
         });
@@ -111,10 +111,10 @@ describe('account', function() {
     });
 
     it('should select via options', function(done) {
-      account.select(null, { account: 'apigee'}, function(err, values) {
+      account.select(null, { account: 'apigee'}, function(err, result) {
         should.not.exist(err);
-        values.provider.should.equal('apigee');
-        account.list(null, function(err, names) {
+        result.should.containDeep('apigee');
+        account.list({}, function(err, names) {
           names.should.containEql('apigee +');
           done();
         });

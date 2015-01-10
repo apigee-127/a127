@@ -50,7 +50,7 @@ app
 app
   .command('select [account]')
   .description('Select an deployment account')
-  .action(execute(account.select, 'Account'));
+  .action(execute(account.select));
 
 app
   .command('show [account]')
