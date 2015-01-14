@@ -37,7 +37,7 @@ app
   .action(execute(service.create, 'Service'));
 
 app
-  .command('delete <name>')
+  .command('delete [name]')
   .description('Delete a service')
   .action(execute(service.delete));
 
