@@ -1,5 +1,6 @@
 {
   "disableCodeGen": true,
+  "disableNewUserIntro": true,
   "examplesFolder": "/spec-files/",
   "exampleFiles": [],
   "autocompleteExtension": {},
@@ -10,7 +11,7 @@
   "disableFileMenu": true,
   "headerBranding": true,
   "enableTryIt": true,
-  "brandingCssClass": "",
+  "brandingCssClass": "a127",
   "schemaUrl": "/schema/swagger.json",
   "importProxyUrl": "https://cors-it.herokuapp.com/?url="
 }
