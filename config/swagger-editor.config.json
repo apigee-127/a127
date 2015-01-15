@@ -1,0 +1,16 @@
+{
+  "disableCodeGen": true,
+  "examplesFolder": "/spec-files/",
+  "exampleFiles": [],
+  "autocompleteExtension": {},
+  "useBackendForStorage": true,
+  "backendEndpoint": "/editor/spec",
+  "backendHelathCheckTimeout": 5000,
+  "useYamlBackend": true,
+  "disableFileMenu": true,
+  "headerBranding": true,
+  "enableTryIt": true,
+  "brandingCssClass": "",
+  "schemaUrl": "/schema/swagger.json",
+  "importProxyUrl": "https://cors-it.herokuapp.com/?url="
+}
