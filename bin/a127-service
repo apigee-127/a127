@@ -39,6 +39,7 @@ app
 app
   .command('delete [name]')
   .description('Delete a service')
+  .option('-f, --force', 'force delete without confirmation')
   .action(execute(service.delete));
 
 app
