@@ -79,6 +79,11 @@ var apigeeStubs = {
         }
       }
     }
+  },
+  'apigee-remote-proxy': {
+    deployRemoteProxy: function(opts, cb) {
+      cb(null, { uris: [] });
+    }
   }
 };
 var apigee = proxyquire('../../../../../lib/commands/account/providers/apigee.js', apigeeStubs);
@@ -247,7 +252,7 @@ describe('apigee', function() {
   it('should create remote proxy service', function(done) {
 
     var options = { long: true };
-    apigee.createService('name', account, 'RemoteProxy', options, function(err, reply) {
+    apigee.createService('name', account, 'RemoteProxy', options, function(err) {
       should.not.exist(err);
 
       should.exist(apigeetoolOpts);
