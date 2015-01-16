@@ -28,7 +28,7 @@
     "request": "^2.47.0",
     "serve-static": "1.7.x",
     "superagent": "^0.21.0",
-    "swagger-editor-for-apigee-127": "2.7.2",
+    "swagger-editor": "2.8.1",
     "swagger-tools": "^0.7.0",
     "tail": "0.3.x",
     "unzip": "0.1.x",

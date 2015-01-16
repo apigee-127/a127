@@ -46,7 +46,7 @@ module.exports = config;
 
 config.swagger = {
   fileName: 'api/swagger/swagger.yaml',
-  editorDir: path.resolve(config.nodeModules, 'swagger-editor-for-apigee-127')
+  editorDir: path.resolve(config.nodeModules, 'swagger-editor')
 };
 
 // usergrid //
