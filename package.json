@@ -9,6 +9,7 @@
   ],
   "author": "Scott Ganyo <sganyo@apigee.com>",
   "license": "MIT",
+  "preferGlobal": true,
   "main": "index.js",
   "dependencies": {
     "a127-magic": "^0.7.0",
