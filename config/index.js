@@ -46,7 +46,7 @@ module.exports = config;
 
 config.swagger = {
   fileName: 'api/swagger/swagger.yaml',
-  editorDir: path.resolve(config.nodeModules, 'swagger-editor-for-apigee-127')
+  editorDir: path.resolve(config.nodeModules, 'swagger-editor')
 };
 
 // usergrid //
@@ -77,6 +77,14 @@ config.project = {
   port: 10010,
   skeletonDir: path.resolve(__dirname, '..', 'project-skeleton')
 };
+
+
+// services //
+
+config.services = {
+  file: path.resolve(config.tmpDir, 'services')
+};
+
 
 // load home directory config
 loadUserConfig();

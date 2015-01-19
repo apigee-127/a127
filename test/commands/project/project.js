@@ -173,17 +173,18 @@ describe('project', function() {
       process.chdir(tmpDir);
       project.create(name, {}, function(err) {
         should.not.exist(err);
-        var packageJson = path.resolve(projPath, 'package.json');
         // check a couple of files
+        var packageJson = path.resolve(projPath, 'package.json');
         fs.existsSync(packageJson).should.be.ok;
         fs.existsSync(path.resolve(projPath, 'node_modules')).should.not.be.ok;
+        fs.existsSync(path.resolve(projPath, '.gitignore')).should.be.ok;
 
         // check spawn `npm install`
         spawn.command.should.equal('npm');
         spawn.args.should.containEql('install');
         spawn.options.should.have.property('cwd', fs.realpathSync(projPath));
 
-        // check customizeClonedFiles
+        // check package.json customization
         fs.readFile(packageJson, { encoding: 'utf8' }, function(err, string) {
           if (err) { return cb(err); }
           var project = JSON.parse(string);

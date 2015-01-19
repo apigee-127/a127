@@ -38,8 +38,9 @@ app
   .option('-w, --password <password>', 'password')
   .option('-e, --environment <environment>', 'environment')
   .option('-v, --virtualhosts <virtualhosts>', 'virtual hosts')
+  .option('-n, --noservice', 'no create service prompt')
   .description('Create a new deployment account')
-  .action(execute(account.create, 'Account'));
+  .action(execute(account.create));
 
 app
   .command('delete [account]')
@@ -84,6 +85,17 @@ app
   .command('providers')
   .description('List available providers')
   .action(execute(account.providers, 'Providers'));
+
+//app
+//  .command('service-types [account]')
+//  .description('List services types available to create for an Account')
+//  .action(execute(account.services, 'Services'));
+//
+//app
+//  .command('services [account]')
+//  .description('List services created on this account')
+//  .action(execute(account.services, 'Services'));
+//
 
 // todo: how to handle provider-specific extensions like this?
 app
