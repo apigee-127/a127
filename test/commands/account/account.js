@@ -243,7 +243,7 @@ describe('account', function() {
     it("should error for when provider doesn't support list", function(done) {
       account.deployments('local', {}, function(err, deployments) {
         should.exist(err);
-        err.message.should.equal('cannot list deployments on local accounts');
+        err.message.should.equal('Cannot list deployments on local accounts');
         done();
       });
     });
@@ -252,7 +252,7 @@ describe('account', function() {
       var options = { account: 'local' };
       account.deployProject(project, options, function(err) {
         should.exist(err);
-        err.message.should.equal('command is not valid for local account');
+        err.message.should.equal('Command is not valid for local account');
         done();
       });
     });
@@ -261,7 +261,7 @@ describe('account', function() {
       var options = { account: 'local' };
       account.undeployProject(project, options, function(err) {
         should.exist(err);
-        err.message.should.equal('not valid for local account');
+        err.message.should.equal('Not valid for local account');
         done();
       });
     });
