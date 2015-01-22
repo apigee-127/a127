@@ -248,9 +248,59 @@ describe('project', function() {
           secrets['_a127_start_config'].mock.should.equal(options.mock);
 
           secrets['name'].should.equal(options.account);
-          // todo: check config print
 
           done();
+        });
+      });
+
+      describe('includePasswordInSecrets', function() {
+
+        it('should not include password if not specified', function(done) {
+          project.start(projPath, options, function(err) {
+            should.not.exist(err);
+
+            var secretsFile = path.join(projPath, 'config', '.a127_secrets');
+            var secrets = yaml.parse(fs.readFileSync(secretsFile, { encoding: 'utf8' }));
+            should.not.exist(secrets['password']);
+
+            done();
+          });
+        });
+
+        it('should include password if specified default.yaml', function(done) {
+          var configFile = path.join(projPath, 'config', 'default.yaml');
+          var config = {
+            includePasswordInSecrets: true
+          };
+          fs.writeFileSync(configFile, yaml.stringify(config));
+
+          project.start(projPath, options, function(err) {
+            should.not.exist(err);
+
+            var secretsFile = path.join(projPath, 'config', '.a127_secrets');
+            var secrets = yaml.parse(fs.readFileSync(secretsFile, { encoding: 'utf8' }));
+            should.exist(secrets['password']);
+
+            done();
+          });
+        });
+
+        it('should include password if specified apigee.yaml', function(done) {
+          var configFile = path.join(projPath, 'config', 'apigee.yaml');
+          var config = {
+            includePasswordInSecrets: true
+          };
+          fs.writeFileSync(configFile, yaml.stringify(config));
+
+          project.start(projPath, options, function(err) {
+            should.not.exist(err);
+
+            var secretsFile = path.join(projPath, 'config', '.a127_secrets');
+            var secrets = yaml.parse(fs.readFileSync(secretsFile, { encoding: 'utf8' }));
+            should.exist(secrets['password']);
+
+            done();
+          });
         });
       });
 
