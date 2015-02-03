@@ -433,7 +433,7 @@ describe('project', function() {
           json.errors.should.be.an.Array;
           var error = json.errors[0];
           error.should.have.property('code', 'INVALID_TYPE');
-          error.should.have.property('message', 'Expected type \"string\" but found type \"integer\"');
+          error.should.have.property('message');
           error.should.have.property('path', [ 'swagger' ]);
           error.should.have.property('description', 'The Swagger version of this document.');
           done();
