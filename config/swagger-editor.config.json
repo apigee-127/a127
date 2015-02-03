@@ -1,4 +1,9 @@
 {
+  "analytics": {
+    "google": {
+      "id": null
+    }
+  },
   "disableCodeGen": true,
   "disableNewUserIntro": true,
   "examplesFolder": "/spec-files/",
