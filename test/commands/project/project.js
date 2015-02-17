@@ -32,6 +32,7 @@ var tmp = require('tmp');
 var fs = require('fs');
 var yaml = require('yamljs');
 var helpers = require('../../helpers');
+var _ = require('lodash');
 
 /*
  create: create,
@@ -253,6 +254,30 @@ describe('project', function() {
         });
       });
 
+      it('should work with no account', function(done) {
+
+        var oldAcct = config.account.file;
+        config.account.file = undefined;
+        project.start(projPath, _.omit(options, 'account'), function(err) {
+          config.account.file = oldAcct;
+          should.not.exist(err);
+
+          var envFile = path.join(projPath, 'config', '.a127_env');
+          var env = fs.readFileSync(envFile, { encoding: 'utf8' });
+          env.should.eql('');
+
+          var secretsFile = path.join(projPath, 'config', '.a127_secrets');
+          var secrets = yaml.parse(fs.readFileSync(secretsFile, { encoding: 'utf8' }));
+
+          secrets['_a127_start_config'].debug.should.equal(options.debug);
+          secrets['_a127_start_config'].mock.should.equal(options.mock);
+
+          should.not.exist(secrets['name']);
+
+          done();
+        });
+      });
+
       describe('includePasswordInSecrets', function() {
 
         it('should not include password if not specified', function(done) {
@@ -348,6 +373,30 @@ describe('project', function() {
         var basicStuff = {
           provider: 'local',
           name: 'local',
+          _a127_start_config: {
+            debug: null,
+            mock: null
+          }
+        };
+        capture.output().should.containDeep(yaml.stringify(basicStuff));
+
+        done();
+      })
+    });
+
+    it('should work with no account', function(done) {
+
+      var oldAcct = config.account.file;
+      config.account.file = undefined;
+      var options = {
+        account: null,
+        print: true
+      };
+      project.showConfig(projPath, options, function(err) {
+        config.account.file = oldAcct;
+        should.not.exist(err);
+
+        var basicStuff = {
           _a127_start_config: {
             debug: null,
             mock: null
