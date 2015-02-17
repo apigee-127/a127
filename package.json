@@ -38,9 +38,9 @@
     "yamljs": "0.1.x"
   },
   "devDependencies": {
-    "should": "4.4.x",
-    "proxyquire": "1.0.x",
-    "tmp": "^0.0.24"
+    "should": "",
+    "proxyquire": "",
+    "tmp": ""
   },
   "scripts": {
     "test": "mocha -u exports -R spec test/config.js test/util test/commands test/commands/account test/commands/project test/commands/service test/commands/account/providers/amazon test/commands/account/providers/apigee",
