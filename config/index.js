@@ -74,7 +74,7 @@ config.account = {
 // project //
 
 config.project = {
-  port: 10010,
+  port: process.env.PORT || 10010,
   skeletonDir: path.resolve(__dirname, '..', 'project-skeleton')
 };
 
