@@ -15,6 +15,7 @@ a127.init(function(config) {
   // error handler to emit errors as a json string
   app.use(function(err, req, res, next) {
     if (err && typeof err === 'object') {
+      Object.defineProperty(err, 'message', { enumerable: true }); // include message property in response
       res.end(JSON.stringify(err));
     }
     next(err);
