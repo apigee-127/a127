@@ -33,7 +33,7 @@ var fs = require('fs');
 var helpers = require('../../../../helpers');
 var account_cmd = require('../../../../../lib/commands/account/account');
 
-var apigeetoolOpts;
+var apigeetoolOpts, createAppOpts;
 var apigeeStubs = {
   apigeetool: {
     deployNodeApp: function(opts, cb) {
@@ -72,6 +72,7 @@ var apigeeStubs = {
           cb(null, { id: 0 });
         },
         createApp: function(appRequest, cb) {
+          createAppOpts = appRequest;
           var reply = {
             credentials: [{ key: 0 }]
           };
@@ -130,6 +131,11 @@ describe('apigee', function() {
         done();
       });
     });
+  });
+
+  beforeEach(function() {
+    apigeetoolOpts = null;
+    createAppOpts = null;
   });
 
   describe('project', function() {
@@ -254,6 +260,10 @@ describe('apigee', function() {
     var options = { long: true };
     apigee.createService('name', account, 'RemoteProxy', options, function(err) {
       should.not.exist(err);
+
+      should.exist(createAppOpts);
+      createAppOpts.should.have.property('environments');
+      createAppOpts.environments.should.eql([account.environment]);
 
       should.exist(apigeetoolOpts);
 
