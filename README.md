@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/apigee-127/a127.svg?branch=master)](https://travis-ci.org/apigee-127/a127)
+
 # a127 reference
 
 This is the installation guide and command reference for `a127`, the command-line interface for Apigee 127. 
