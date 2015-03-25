@@ -37,6 +37,7 @@ describe('net', function() {
   describe('isPortOpen', function() {
 
     var port, server;
+    this.timeout(5000);
 
     it('should recognize an open port', function(done) {
 
