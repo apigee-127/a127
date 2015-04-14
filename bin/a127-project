@@ -43,6 +43,7 @@ app
   .option('-o, --open', 'open in browser')
   .option('-a, --account <account>', 'use specified account')
   .option('-p, --print', 'print configuration')
+  .option('-n, --nocors', 'omit cors headers')
   .action(execute(project.start));
 
 app
