@@ -1,0 +1,3 @@
+validateResponse: true
+docEndpoints:
+  raw: /swagger

@@ -71,11 +71,6 @@ app
   .description('Print the logs for a project')
   .action(execute(project.logs));
 
-//app
-//  .command('docs [directory]')
-//  .description('View project docs in a browser')
-//  .action(execute(project.docs));
-
 app
   .command('bind [service] [directory]')
   .description('Bind the project to a service')

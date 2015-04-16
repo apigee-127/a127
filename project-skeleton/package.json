@@ -33,7 +33,6 @@
   "api": {
     "name": "a127-skeleton",
     "basePath": "/api",
-    "docsPath": "/docs",
     "main": "app.js"
   }
 }
