@@ -211,7 +211,7 @@ describe('project', function() {
       var options = { debug: 'true,test' };
       project.start(projPath, options, function(err) {
         should.not.exist(err);
-        nodemonOpts.nodeArgs.should.containDeep('--debug=' + options.debug);
+        nodemonOpts.nodeArgs.should.containEql('--debug=' + options.debug);
         done();
       });
     });
@@ -220,7 +220,7 @@ describe('project', function() {
       var options = { debugBrk: true };
       project.start(projPath, options, function(err) {
         should.not.exist(err);
-        nodemonOpts.nodeArgs.should.containDeep('--debug-brk');
+        nodemonOpts.nodeArgs.should.containEql('--debug-brk');
         done();
       });
     });
@@ -342,7 +342,7 @@ describe('project', function() {
 
             var secretsFile = path.join(projPath, 'config', '.a127_secrets');
             var secrets = yaml.parse(fs.readFileSync(secretsFile, { encoding: 'utf8' }));
-            capture.output().should.containDeep(yaml.stringify(secrets));
+            capture.output().should.containEql(yaml.stringify(secrets));
             done();
           })
         })
@@ -378,7 +378,7 @@ describe('project', function() {
             mock: null
           }
         };
-        capture.output().should.containDeep(yaml.stringify(basicStuff));
+        capture.output().should.containEql(yaml.stringify(basicStuff));
 
         done();
       })
@@ -402,7 +402,7 @@ describe('project', function() {
             mock: null
           }
         };
-        capture.output().should.containDeep(yaml.stringify(basicStuff));
+        capture.output().should.containEql(yaml.stringify(basicStuff));
 
         done();
       })
@@ -466,8 +466,8 @@ describe('project', function() {
         project.verify(projPath, {}, function(err, reply) {
           should.not.exist(err);
 
-          capture.output().should.containDeep('\nProject Errors\n--------------\n#/swagger:');
-          reply.should.containDeep('Results:');
+          capture.output().should.containEql('\nProject Errors\n--------------\n#/swagger:');
+          reply.should.containEql('Results:');
           done();
         })
       });

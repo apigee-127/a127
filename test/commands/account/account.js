@@ -102,7 +102,7 @@ describe('account', function() {
     it('should select via name', function(done) {
       account.select('local', {}, function(err, result) {
         should.not.exist(err);
-        result.should.containDeep('local');
+        result.should.containEql('local');
         account.list({}, function(err, names) {
           names.should.containEql('local +');
           done();
@@ -113,7 +113,7 @@ describe('account', function() {
     it('should select via options', function(done) {
       account.select(null, { account: 'apigee'}, function(err, result) {
         should.not.exist(err);
-        result.should.containDeep('apigee');
+        result.should.containEql('apigee');
         account.list({}, function(err, names) {
           names.should.containEql('apigee +');
           done();
