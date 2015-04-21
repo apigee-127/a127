@@ -1,3 +1,4 @@
 validateResponse: true
 docEndpoints:
-  raw: /swagger
+  raw: /swagger        # expose the swagger JSON and YAML at this endpoint
+#  docs: /swagger-docs  # expose swagger-docs browser UI on this endpoint

@@ -64,6 +64,11 @@ app
   .action(execute(project.open));
 
 app
+  .command('docs [directory]')
+  .description('Open project docs (if configured) in browser')
+  .action(execute(project.showDocs));
+
+app
   .command('logs [directory]')
   .option('-a, --account <account>', 'use specified account')
   .option('-f, --follow', 'follow (tail -f) the logs')
