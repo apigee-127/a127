@@ -14,12 +14,23 @@ a127.init(function(config) {
 
   // error handler to emit errors as a json string
   app.use(function(err, req, res, next) {
-    if (err && typeof err === 'object') {
-      Object.defineProperty(err, 'message', { enumerable: true }); // include message property in response
-      res.end(JSON.stringify(err));
+    if (typeof err !== 'object') {
+      // If the object is not an Error, create a representation that appears to be
+      err = {
+        message: String(err) // Coerce to string
+      };
+    } else {
+      // Ensure that err.message is enumerable (It is not by default)
+      Object.defineProperty(err, 'message', { enumerable: true });
     }
-    next(err);
+
+    // Return a JSON representation of #/definitions/ErrorResponse
+    res.set('Content-Type', 'application/json');
+    res.end(JSON.stringify(err));
+
+    next();
   });
+
   var port = process.env.PORT || 10010;
   // begin listening for client requests
   app.listen(port);
