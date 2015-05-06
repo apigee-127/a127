@@ -27,8 +27,6 @@ a127.init(function(config) {
     // Return a JSON representation of #/definitions/ErrorResponse
     res.set('Content-Type', 'application/json');
     res.end(JSON.stringify(err));
-
-    next();
   });
 
   var port = process.env.PORT || 10010;
