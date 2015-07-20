@@ -12,7 +12,7 @@
   "preferGlobal": true,
   "main": "index.js",
   "dependencies": {
-    "a127-magic": "^0.10.0",
+    "a127-magic": "^0.11.0",
     "apigee-remote-proxy": "^0.10.0",
     "apigeetool": "^0.5.1",
     "async": "0.8.x",
