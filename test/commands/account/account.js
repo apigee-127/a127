@@ -78,7 +78,7 @@ describe('account', function() {
         //values.should.have.property('provider', 'local');
         account.list(null, function(err, names) {
           should.not.exist(err);
-          names.should.containEql('test');
+          names.should.containEql('test +'); // should be created & selected
           done();
         });
       });
@@ -90,6 +90,7 @@ describe('account', function() {
         account.list(null, function(err, names) {
           should.not.exist(err);
           names.should.not.containEql('test');
+          names.should.not.containEql('test +');
           done();
         });
       });
