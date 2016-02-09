@@ -48,14 +48,6 @@ paths:
 # complex objects have schema definitions
 definitions:
   HelloWorldResponse:
-    required:
-      - message
-    properties:
-      message:
-        type: string
+    type: string
   ErrorResponse:
-    required:
-      - message
-    properties:
-      message:
-        type: string
+    type: string
