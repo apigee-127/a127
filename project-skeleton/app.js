@@ -29,9 +29,10 @@ a127.init(function(config) {
     res.end(JSON.stringify(err));
   });
 
+  var ip = process.env.IP || 'localhost';
   var port = process.env.PORT || 10010;
   // begin listening for client requests
-  app.listen(port);
+  app.listen(port, ip);
 
-  console.log('try this:\ncurl http://127.0.0.1:' + port + '/hello?name=Scott');
+  console.log('try this:\ncurl http://' + ip + ':' + port + '/hello?name=Scott');
 });
