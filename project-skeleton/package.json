@@ -9,7 +9,7 @@
   "main": "app.js",
   "dependencies": {
     "express": "3.x.x",
-    "a127-magic": "^0.11.0",
+    "a127-magic": "^0.12.0",
     "volos-analytics-apigee": "",
     "volos-analytics-common": "",
     "volos-analytics-memory": "",

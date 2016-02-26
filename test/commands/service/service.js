@@ -30,7 +30,7 @@ var path = require('path');
 var proxyquire =  require('proxyquire');
 var tmp = require('tmp');
 var fs = require('fs');
-var yaml = require('yamljs');
+var yaml = require('js-yaml');
 var helpers = require('../../helpers');
 
 /*

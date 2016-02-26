@@ -30,7 +30,7 @@ var path = require('path');
 var proxyquire =  require('proxyquire');
 var tmp = require('tmp');
 var fs = require('fs');
-var yaml = require('yamljs');
+var yaml = require('js-yaml');
 var helpers = require('../../helpers');
 var _ = require('lodash');
 
@@ -207,7 +207,7 @@ describe('project', function() {
       project.create(name, {}, done);
     });
 
-    it('should pass debug debug options', function(done) {
+    it('should pass debug options', function(done) {
       var options = { debug: 'true,test' };
       project.start(projPath, options, function(err) {
         should.not.exist(err);
@@ -243,7 +243,7 @@ describe('project', function() {
           env.should.equal(options.account);
 
           var secretsFile = path.join(projPath, 'config', '.a127_secrets');
-          var secrets = yaml.parse(fs.readFileSync(secretsFile, { encoding: 'utf8' }));
+          var secrets = yaml.safeLoad(fs.readFileSync(secretsFile, { encoding: 'utf8' }));
 
           secrets['_a127_start_config'].debug.should.equal(options.debug);
           secrets['_a127_start_config'].mock.should.equal(options.mock);
@@ -267,7 +267,7 @@ describe('project', function() {
           env.should.eql('');
 
           var secretsFile = path.join(projPath, 'config', '.a127_secrets');
-          var secrets = yaml.parse(fs.readFileSync(secretsFile, { encoding: 'utf8' }));
+          var secrets = yaml.safeLoad(fs.readFileSync(secretsFile, { encoding: 'utf8' }));
 
           secrets['_a127_start_config'].debug.should.equal(options.debug);
           secrets['_a127_start_config'].mock.should.equal(options.mock);
@@ -285,7 +285,7 @@ describe('project', function() {
             should.not.exist(err);
 
             var secretsFile = path.join(projPath, 'config', '.a127_secrets');
-            var secrets = yaml.parse(fs.readFileSync(secretsFile, { encoding: 'utf8' }));
+            var secrets = yaml.safeLoad(fs.readFileSync(secretsFile, { encoding: 'utf8' }));
             should.not.exist(secrets['password']);
 
             done();
@@ -297,13 +297,13 @@ describe('project', function() {
           var config = {
             includePasswordInSecrets: true
           };
-          fs.writeFileSync(configFile, yaml.stringify(config));
+          fs.writeFileSync(configFile, yaml.safeDump(config, { skipInvalid: true }));
 
           project.start(projPath, options, function(err) {
             should.not.exist(err);
 
             var secretsFile = path.join(projPath, 'config', '.a127_secrets');
-            var secrets = yaml.parse(fs.readFileSync(secretsFile, { encoding: 'utf8' }));
+            var secrets = yaml.safeLoad(fs.readFileSync(secretsFile, { encoding: 'utf8' }));
             should.exist(secrets['password']);
 
             done();
@@ -315,13 +315,13 @@ describe('project', function() {
           var config = {
             includePasswordInSecrets: true
           };
-          fs.writeFileSync(configFile, yaml.stringify(config));
+          fs.writeFileSync(configFile, yaml.safeDump(config, { skipInvalid: true }));
 
           project.start(projPath, options, function(err) {
             should.not.exist(err);
 
             var secretsFile = path.join(projPath, 'config', '.a127_secrets');
-            var secrets = yaml.parse(fs.readFileSync(secretsFile, { encoding: 'utf8' }));
+            var secrets = yaml.safeLoad(fs.readFileSync(secretsFile, { encoding: 'utf8' }));
             should.exist(secrets['password']);
 
             done();
@@ -341,8 +341,9 @@ describe('project', function() {
             should.not.exist(err);
 
             var secretsFile = path.join(projPath, 'config', '.a127_secrets');
-            var secrets = yaml.parse(fs.readFileSync(secretsFile, { encoding: 'utf8' }));
-            capture.output().should.containEql(yaml.stringify(secrets));
+            var content = fs.readFileSync(secretsFile, { encoding: 'utf8' });
+            var secrets = yaml.safeLoad(content);
+            capture.output().should.containEql(yaml.safeDump(secrets, { skipInvalid: true }));
             done();
           })
         })
@@ -372,13 +373,9 @@ describe('project', function() {
 
         var basicStuff = {
           provider: 'local',
-          name: 'local',
-          _a127_start_config: {
-            debug: null,
-            mock: null
-          }
+          name: 'local'
         };
-        capture.output().should.containEql(yaml.stringify(basicStuff));
+        capture.output().should.containEql(yaml.safeDump(basicStuff, { skipInvalid: true }));
 
         done();
       })
@@ -396,13 +393,8 @@ describe('project', function() {
         config.account.file = oldAcct;
         should.not.exist(err);
 
-        var basicStuff = {
-          _a127_start_config: {
-            debug: null,
-            mock: null
-          }
-        };
-        capture.output().should.containEql(yaml.stringify(basicStuff));
+        var basicStuff = {};
+        capture.output().should.containEql(yaml.safeDump(basicStuff, { skipInvalid: true }));
 
         done();
       })
