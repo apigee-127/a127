@@ -185,7 +185,7 @@ describe('apigee', function() {
         var expected = {
           baseuri: account.baseuri,
           organization: account.organization,
-          environment: account.environment,
+          environments: account.environment,
           username: account.username,
           password: account.password,
           debug: config.debug,
