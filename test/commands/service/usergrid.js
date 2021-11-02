@@ -59,7 +59,7 @@ describe('usergrid', function() {
     },
     '../../util/net': {
       isPortOpen: function(port, cb) {
-        cb(null, _.contains(portsOpen, port));
+        cb(null, _.includes(portsOpen, port));
       }
     },
     'child_process': {
